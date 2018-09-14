@@ -9,6 +9,8 @@ import store from './store';
 
 import './styles/css/index.css';
 
+console.log(store.getState());
+
 ReactDOM.render(
     <Provider store={store}>
         <Router>
