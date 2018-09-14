@@ -47,7 +47,7 @@ class Home extends React.Component {
 
     render() {
         if (this.props.selected) {
-            let redirectString = '/product-page' + '?=' + this.props.selected;
+            let redirectString = '/product-page' + '?ramenId=' + this.props.selected;
             return <Redirect to={redirectString}/>
         }
         const topRated = this.state.ramen.map((item) => {

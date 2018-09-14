@@ -24,7 +24,8 @@ class ProductPage extends React.Component {
         // params.get('ramenId')
         if (!this.props.selected) {
             const values = queryString.parse(this.props.location.search);
-            console.log(values.ramenId);
+            console.log(values)
+
             try {
                 this.props.dispatch(selectRamen(values.ramenId))
                 setTimeout(() => {
@@ -79,7 +80,6 @@ class ProductPage extends React.Component {
             // if (this.state.notFound) {
             //     return (<div className="loading">Unable to find product page, redirecting in {this.state.redirectCountDown}...</div>)
             // }
-
 
             const reviews = this.state.ramen.ratings;
             const buildJSX = reviews.map((review) => {
