@@ -1,0 +1,76 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+
+a {
+    text-decoration:none;
+}
+
+html {
+    //This defines what 1rem is;
+    font-size: 62.5%; //1 rem = 10px; 10px / 16px = 62.5%
+
+    @include respond(big-desktop) {
+        font-size: 62.5%; //1 rem = 12px, 12/16 = 75%
+    }
+    @include respond(tab-land) {
+        font-size: 50%; //1 rem = 9px, 9/16 = 56.25%
+    }    
+    @include respond(tab-port) {
+        font-size: 50%; //1 rem = 8px, 8/16 = 50%
+    }
+    @include respond(phone) {
+        font-size: 37.5%; //1 rem = 6px, 6/16 = 37.5%
+    }
+        
+}
+
+body {
+    box-sizing: border-box;
+    padding: 0rem;
+
+    //App-specific Default Settings
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    color: $color-font;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    &__content {
+        flex: 1 0 auto;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+li {
+    line-height: 1.7;
+    list-style-type: none;
+}
+
+svg {
+    color: $color-font;
+    @include respond(small-phone) {
+        width: .7rem;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, rgba($color-overlay, .8), rgba($color-overlay, .8));
+    width: 100%;
+    height: 100%;
+    padding: 1px;
+}

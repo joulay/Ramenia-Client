@@ -1,0 +1,46 @@
+.product-page {
+
+    &__main {
+        margin-top: 10rem;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+
+        &__left {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            width: 47.5%;
+        }
+
+        &__right {
+            width: 47.5%;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &__favorite {
+            width: 50px;
+            margin-left: 100px;
+        }
+
+        &__image {
+            align-self: center;
+            width: 200px;
+        }
+
+        &__user-rating {
+
+        }
+
+        &__number-rating {
+            font-size: 48px;
+        }
+
+        &__total-rating {
+
+        }
+    }
+}
