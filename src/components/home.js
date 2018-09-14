@@ -4,6 +4,7 @@ import { Route, withRouter } from 'react-router-dom';
 
 import neoguri from '../styles/images/neoguri.jpeg';
 // import { BrowserRouter as Router } from 'react-router-dom'; 
+//font-family: 'Kosugi Maru', sans-serif;
 
 class Home extends React.Component {
 
@@ -53,7 +54,6 @@ class Home extends React.Component {
                     </ul>
                 </div>
             </section>
-        
     )
     }
 }
