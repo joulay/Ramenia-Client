@@ -2,20 +2,52 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 
+import { normalizeResponseErrors } from '../actions/utils';
+import { API_BASE_URL } from '../config';
+
 import neoguri from '../styles/images/neoguri.jpeg';
 // import { BrowserRouter as Router } from 'react-router-dom'; 
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            ramen: [],
+            style: 'Spicy'
+        }
+    }
+
+    componentDidMount() {
+        return fetch(`${API_BASE_URL}/ramen`, {
+            method: 'GET'
+        })
+        .then(res => res.json())
+        .then(result => {
+            let resp = result;
+            for (let i=0; i<result.length; i++) {
+                let totalRatings = [2]
+                for (let j=0; j<result[i].ratings.length; j++) {
+                    totalRatings.push(result[i].ratings[j].overall);
+                }
+                resp[i].overallRating = totalRatings.reduce((a,b) => a+b) / totalRatings.length;
+            }
+            this.setState({ramen: resp})
+            return resp;
+        })
+        .catch(err => console.log(err))
+    }
 
     render() {
-        let placeholder = ['Yukkaejong', 'ShinRamen', 'Buldakbokkeummyeon', 'Neoguri', 'Japaghetti'];
-        const buildJSX = placeholder.map((item) => {
+        console.log(this.state);
+        const topRated = this.state.ramen.map((item) => {
             return (
-            <li className="home__featured__li">
-                <img src={neoguri} className="home__featured__image"/>
-                <p className="home__featured__item-name">{item}</p>
+            <li key={item.name} className="home__featured__li">
+                <img src={item.image} className="home__featured__image"/>
+                <span>{item.overallRating}</span>
             </li>)
         })
+        
         return (
             <section className="home">
                 <div className="home__cover">
@@ -35,21 +67,21 @@ class Home extends React.Component {
                 <div className="home__featured container">
                     <h2 className="home__featured__header">Top Rated Ramen</h2>
                     <ul className="home__featured__ul">
-                        {buildJSX}
+                        {topRated}
                     </ul>
                 </div>
                 <div className="home__by-type container">
                 <h2 className="home__by-type__header">Top Ramen by Style</h2>
                     <ul className="home__by-type__types-list">
-                        <li className="home__by-type__types-list__item home__by-type__spicy"><a>Spicy</a></li>
-                        <li className="home__by-type__types-list__item home__by-type__korean"><a>Korean</a></li>
-                        <li className="home__by-type__types-list__item home__by-type__chinese"><a>Chinese</a></li>
-                        <li className="home__by-type__types-list__item home__by-type__japanese"><a>Japanese</a></li>
-                        <li className="home__by-type__types-list__item home__by-type__indonesian"><a>Indonesian</a></li>
-                        <li className="home__by-type__types-list__item home__by-type__soupless"><a>Soupless</a></li>
+                        <li className="home__by-type__types-list__item home__by-type__spicy" onClick={() => this.setState({style: 'Spicy'})}>Spicy</li>
+                        <li className="home__by-type__types-list__item home__by-type__korean" onClick={() => this.setState({style: 'Korean'})}>Korean</li>
+                        <li className="home__by-type__types-list__item home__by-type__chinese" onClick={() => this.setState({style: 'Chinese'})}>Chinese</li>
+                        <li className="home__by-type__types-list__item home__by-type__japanese" onClick={() => this.setState({style: 'Japanese'})}>Japanese</li>
+                        <li className="home__by-type__types-list__item home__by-type__indonesian" onClick={() => this.setState({style: 'Indonesian'})}>Indonesian</li>
+                        <li className="home__by-type__types-list__item home__by-type__soupless" onClick={() => this.setState({style: 'Soupless'})}>Soupless</li>
                     </ul>
                     <ul className="home__by-type__ul">
-                        {buildJSX}
+                        {topRated}
                     </ul>
                 </div>
             </section>

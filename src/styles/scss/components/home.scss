@@ -68,6 +68,17 @@
             justify-content: space-around;
             align-content: row;
         }
+
+        &__li {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__image {
+            width: 200px;
+        }
     }
 
     &__by-type {
