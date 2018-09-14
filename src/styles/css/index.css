@@ -104,6 +104,13 @@ svg {
     display: flex;
     justify-content: space-around;
     align-content: row; }
+  .home__featured__li {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center; }
+  .home__featured__image {
+    width: 200px; }
   .home__by-type__header {
     padding: 1rem 0;
     border-bottom: 1px solid #aaa; }
