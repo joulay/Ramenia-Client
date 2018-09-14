@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Redirect } from 'react-router-dom';
 
 import { normalizeResponseErrors } from '../actions/utils';
 import { API_BASE_URL } from '../config';
+
+import {selectRamen} from '../actions/selections';
 
 import neoguri from '../styles/images/neoguri.jpeg';
 // import { BrowserRouter as Router } from 'react-router-dom'; 
@@ -18,6 +20,10 @@ class Home extends React.Component {
         }
     }
 
+    selectProduct(item) {
+        this.props.dispatch(selectRamen(item))
+    }
+
     componentDidMount() {
         return fetch(`${API_BASE_URL}/ramen`, {
             method: 'GET'
@@ -26,7 +32,7 @@ class Home extends React.Component {
         .then(result => {
             let resp = result;
             for (let i=0; i<result.length; i++) {
-                let totalRatings = [2]
+                let totalRatings = []
                 for (let j=0; j<result[i].ratings.length; j++) {
                     totalRatings.push(result[i].ratings[j].overall);
                 }
@@ -39,10 +45,13 @@ class Home extends React.Component {
     }
 
     render() {
-        console.log(this.state);
+        if (this.props.selected) {
+            let redirectString = '/product-page' + '?=' + this.props.selected;
+            return <Redirect to={redirectString}/>
+        }
         const topRated = this.state.ramen.map((item) => {
             return (
-            <li key={item.name} className="home__featured__li">
+            <li key={item.name} onClick={() => this.selectProduct(item.id)} className="home__featured__li">
                 <img src={item.image} className="home__featured__image"/>
                 <span>{item.overallRating}</span>
             </li>)
@@ -93,7 +102,8 @@ class Home extends React.Component {
 const mapStateToProps = state => ({
     hasAuthToken: state.auth.authToken !== null,
     currentUser: state.auth.currentUser,
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    selected: state.selections.selected
 });
 
 // Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
