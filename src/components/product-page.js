@@ -29,8 +29,6 @@ class ProductPage extends React.Component {
 
     componentDidMount() {
 
-        // const params = new URLSearchParams(this.props.location.search);
-        // params.get('ramenId')
         if (!this.props.selected) {
             const values = queryString.parse(this.props.location.search);
             try {
@@ -89,33 +87,13 @@ class ProductPage extends React.Component {
     render() {
         console.log(this.state)
         try {
-            // if (this.state.ramen.ratings.length < 1) {
-            //     return (
-            //         <section className="product-page">
-            //             <div className="product-page__main container">
-            //                 <div className="product-page__main__left">
-            //                     <img className="product-page__main__favorite" src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Favorite-Heart-icon.png" />
-            //                     <img className="product-page__main__image" src={this.state.ramen.image} />
-            //                     {/* <span className="product-page__main__user-rating">{stars}</span> */}
-            //                 </div>
-            //                 {reviewForm}
-            //             </div>
-            //             <div className="product-page__reviews container">
-            //                 <ul className="product-page__reviews__ul">
-            //                 </ul>
-            //             </div>
-            //         </section>
-            //     )
-            // }
             let starArray;
             let count = 0;
             const reviews = this.state.ramen.ratings;
             const buildJSX = reviews.map((review) => {
                 starArray = [];
                 count = review.overall;
-                console.log(review);
                 while (starArray.length < 5) {
-                    console.log(count);
                     if (count >= 1) {
                         starArray.push({star: 'full', key: count});
                     } else if (count > 0) {
@@ -141,7 +119,6 @@ class ProductPage extends React.Component {
                 if (review.review.length > 0) {
                     reviewText = review.review;
                 }
-                console.log(review);
                 return (
                     <li key={review.id} className="product-page__reviews__li">
                         <span className="product-page__reviews__rating">{reviewStars}</span>
