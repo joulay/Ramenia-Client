@@ -14,7 +14,9 @@ class Admin extends React.Component {
         this.state = {
             tab: 'add',
             companies: [],
-            confirm: false
+            confirm: '',
+            editRamenCompanyValue: '',
+            ramenCompanyId: ''
         }
     }
 
@@ -48,22 +50,28 @@ class Admin extends React.Component {
 
         const companyList = this.state.companies.map((company) => {
             return (
-                <li key={company.id} className="admin__company-list__item">
-                    <p>{company.name} : {company.id}</p>
+                <li className="pointer-cursor" value={company.id} key={company.id}className="admin__company-list__item"
+                    onClick={() => {
+                    this.setState({
+                        editRamenCompanyValue: company.id,
+                        ramenCompanyId: company.id
+                    })
+                }}>
+                    <a className="pointer-cursor">{company.name} : {company.id}</a>
                 </li>
             ) 
         })
         const ramenList = this.props.ramen.map((ramen) => {
             return (
                 <li key={ramen.id} className="admin__ramen-list__item">
-                    <p>{ramen.name} : {ramen.id}</p>
+                    <p>{ramen.name} : <a className="">{ramen.id}</a></p>
                 </li>
             )
         })
         const tagList = this.props.tags.map((tag) => {
             return (
-                <li key={tag.id} className="admin__tag-list__item">
-                    <p>{tag.name} : {tag.id}</p>
+                <li className="" key={tag.id} className="admin__tag-list__item">
+                    <p>{tag.name} : <a className="">{tag.id}</a></p>
                 </li>
             )
         })
@@ -89,7 +97,7 @@ class Admin extends React.Component {
                         <label className="admin__label">Name</label>
                         <input required onChange={(event) => this.setState({ramenName: event.target.value})} className="admin__input" />
                         <label className="admin__label">Company ID</label>
-                        <input required onChange={(event) => this.setState({ramenCompanyId: event.target.value})} className="admin__input" />
+                        <input required value={this.state.ramenCompanyId} onChange={(event) => this.setState({ramenCompanyId: event.target.value})} className="admin__input" />
                         <label className="admin__label">Product Image URL</label>
                         <input required onChange={(event) => this.setState({ramenImageUrl: event.target.value})} className="admin__input url-input" />
                         <button className="admin__button">Check</button>
@@ -523,6 +531,14 @@ class Admin extends React.Component {
                     </section>
                 )
             } else if (this.state.editRamenId) {
+                const companyListNonClick = this.state.companies.map((company) => {
+                    return (
+                        <li className="" value={company.id} key={company.id}className="admin__company-list__item">
+                            <p className="">{company.name} : {company.id}</p>
+                        </li>
+                    ) 
+                })
+
                 const ramenInfo = this.props.ramen.filter((ramen) => String(ramen.id) === String(this.state.editRamenId))[0];
                 return (
                     <section className="admin">
@@ -571,6 +587,10 @@ class Admin extends React.Component {
                                 >Confirm Edit</button>
                                 <button className="confirmCancelButton" onClick={() => this.setState({editRamenId: null, editRamen: null})}>Cancel Edit</button>
                             </form>
+                            <ul className="admin__company-list">
+                            <h2>Company ID Information</h2>
+                                {companyListNonClick}
+                            </ul>
                         </div>
                     </section>
                 )
