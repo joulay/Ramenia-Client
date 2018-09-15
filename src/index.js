@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 import store from './store';
@@ -10,6 +11,7 @@ import store from './store';
 import './styles/css/index.css';
 
 console.log(store.getState());
+const history = createHistory();
 
 ReactDOM.render(
     <Provider store={store}>
