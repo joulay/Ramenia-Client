@@ -88,19 +88,56 @@
         }
     }
 
+    &__edit {
+
+        &__text {
+            font-size: 18px;
+        }
+
+        &__button {
+            font-size: 14px;
+            padding: 3px;
+            margin: 0 1rem;
+        }
+    }
+
+    &__edit-form {
+
+        &__label {
+            display: block;
+        }
+
+        &__input {
+            display: block;
+        }
+    }
+
 }
 
-.confirmDeleteText {
+.url-input {
+    width: 100%;
+}
+
+.confirmText {
     font-size: 36px;
     font-weight: bold;
 }
 
-.confirmDeleteImg {
+.confirmImg {
     width: 200px;
     display: block;
+}
+
+.confirmCancelButton {
+    margin: 5px;
+    padding: 5px;
+    background-color: green;
+    color: white;
 }
 
 .confirmDeleteButton {
     margin: 5px;
     padding: 5px;
+    background-color: red;
+    color: white;
 }

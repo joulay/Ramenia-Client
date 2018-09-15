@@ -41,7 +41,7 @@ class Admin extends React.Component {
                     <li onClick={() => this.setState({tab: 'createTag', confirm: false})} className="admin__nav__ul__li">Create Tag</li>
                     <li onClick={() => this.setState({tab: 'addTagToRamen', confirm: false})} className="admin__nav__ul__li">Add Tag to Ramen</li>
                     <li onClick={() => this.setState({tab: 'deleteTagFromRamen'})} className="admin__nav__ul__li">Remove Tag from Ramen</li>
-                    <li onClick={() => this.setState({tab: 'delete'})} className="admin__nav__ul__li">Delete Ramen/Company/Tag</li>
+                    <li onClick={() => this.setState({tab: 'delete'})} className="admin__nav__ul__li">Edit/Delete Ramen/Company/Tag</li>
                 </ul>
             </nav>
             )
@@ -91,7 +91,7 @@ class Admin extends React.Component {
                         <label className="admin__label">Company ID</label>
                         <input required onChange={(event) => this.setState({ramenCompanyId: event.target.value})} className="admin__input" />
                         <label className="admin__label">Product Image URL</label>
-                        <input required onChange={(event) => this.setState({ramenImageUrl: event.target.value})} className="admin__input" />
+                        <input required onChange={(event) => this.setState({ramenImageUrl: event.target.value})} className="admin__input url-input" />
                         <button className="admin__button">Check</button>
                     </form>
                 </div>
@@ -111,7 +111,7 @@ class Admin extends React.Component {
                         <label className="admin__label">Company Name</label>
                         <input required onChange={(event) => this.setState({companyName: event.target.value})} className="admin__input" />
                         <label className="admin__label">Company Home Page URL</label>
-                        <input required onChange={(event) => this.setState({companyUrl: event.target.value})} className="admin__input" />
+                        <input required onChange={(event) => this.setState({companyUrl: event.target.value})} className="admin__input url-input" />
                         <button className="admin__button">Check</button>
                     </form>
                 </div>
@@ -186,27 +186,36 @@ class Admin extends React.Component {
             const ramen = this.props.ramen.map((ramen) => {
                 return (
                     <li key={ramen.id} value={ramen.id} className="admin__delete__li">
-                        <p className="admin__delete__text"><button className="admin__delete__button" value={ramen.id} onClick={(event) => this.setState({deleteRamen: ramen.name, deleteRamenId: ramen.id})}>Delete</button>{ramen.name}</p>
+                        <p className="admin__delete__text">
+                        <button className="admin__edit__button" value={ramen.id} onClick={(event) => this.setState({editRamen: ramen.name, editRamenId: ramen.id})}>Edit</button>
+                        <button className="admin__delete__button" value={ramen.id} onClick={(event) => this.setState({deleteRamen: ramen.name, deleteRamenId: ramen.id})}>Delete</button>
+                        {ramen.name}</p>
                     </li>
                 )
             });
             const tags = this.props.tags.map((tag) => {
                 return (
                     <li key={tag.id} value={tag.id} className="admin__delete__li">
-                        <p className="admin__delete__text"><button className="admin__delete__button" value={tag.id} onClick={(event) => this.setState({deleteTag: tag.name, deleteTagId: tag.id})}>Delete</button>{tag.name}</p>
+                        <p className="admin__delete__text">
+                        <button className="admin__edit__button" value={tag.id} onClick={(event) => this.setState({editTag: tag.name, editTagId: tag.id})}>Edit</button>                        
+                        <button className="admin__delete__button" value={tag.id} onClick={(event) => this.setState({deleteTag: tag.name, deleteTagId: tag.id})}>Delete</button>
+                        {tag.name}</p>
                     </li>
                 )
             });
             const companies = this.state.companies.map((company) => {
                 return (
                     <li key={company.id} value={company.id} className="admin__delete__li">
-                        <p className="admin__delete__text"><button className="admin__delete__button" value={company.id} onClick={(event) => this.setState({deleteCompany: company.name, deleteCompanyId: company.id})}>Delete</button>{company.name}</p>
+                        <p className="admin__delete__text">
+                        <button className="admin__edit__button" value={company.id} onClick={(event) => this.setState({editCompany: company.name, editCompanyId: company.id})}>Edit</button>                        
+                        <button className="admin__delete__button" value={company.id} onClick={(event) => this.setState({deleteCompany: company.name, deleteCompanyId: company.id})}>Delete</button>
+                        {company.name}</p>
                     </li>
                 )
             });
             menu = (
                 <div className="admin">
-                    <h2>Delete Ramen/Company/Tag</h2>
+                    <h2>Edit/Delete Ramen/Company/Tag</h2>
                     <h3>Ramen</h3>
                     <ul className="admin__delete__ramen-ul">
                         {ramen}
@@ -441,15 +450,14 @@ class Admin extends React.Component {
             </section>
             )
         } else {
-
             if (this.state.deleteRamenId) {
                 const ramenInfo = this.props.ramen.filter((ramen) => String(ramen.id) === String(this.state.deleteRamenId))[0];
                 return (
                     <section className="admin">
                         <div className="container">
                             <h1>Are you sure you want to delete this ramen?</h1>
-                            <p className="confirmDeleteText">{this.state.deleteRamen}</p>
-                            <img className="confirmDeleteImg" src={ramenInfo.image}/>
+                            <p className="confirmText">{this.state.deleteRamen}</p>
+                            <img className="confirmImg" src={ramenInfo.image}/>
                             <button className="confirmDeleteButton"
                             onClick={() => {
                                 return fetch(`${API_BASE_URL}/ramen/${this.state.deleteRamenId}`, {
@@ -462,7 +470,7 @@ class Admin extends React.Component {
                                 .catch(err => console.log(err))
                             }}
                             >Confirm Deletion</button>
-                            <button className="confirmDeleteButton" onClick={() => this.setState({deleteRamenId: null, deleteRamen: null})}>Cancel Deletion</button>
+                            <button className="confirmCancelButton" onClick={() => this.setState({deleteRamenId: null, deleteRamen: null})}>Cancel Deletion</button>
                         </div>
                     </section>
                 )
@@ -472,8 +480,8 @@ class Admin extends React.Component {
                     <section className="admin">
                         <div className="container">
                             <h1>Are you sure you want to delete this tag?</h1>
-                            <p className="confirmDeleteText">{this.state.deleteTag}</p>
-                            <img className="confirmDeleteImg" src={tagInfo.image}/>
+                            <p className="confirmText">{this.state.deleteTag}</p>
+                            <img className="confirmImg" src={tagInfo.image}/>
                             <button className="confirmDeleteButton"
                             onClick={() => {
                                 return fetch(`${API_BASE_URL}/tags/${this.state.deleteTagId}`, {
@@ -486,7 +494,7 @@ class Admin extends React.Component {
                                 .catch(err => console.log(err))
                             }}
                             >Confirm Deletion</button>
-                            <button className="confirmDeleteButton" onClick={() => this.setState({deleteTagId: null, deleteTag: null})}>Cancel Deletion</button>
+                            <button className="confirmCancelButton" onClick={() => this.setState({deleteTagId: null, deleteTag: null})}>Cancel Deletion</button>
                         </div>
                     </section>
                 )
@@ -496,8 +504,8 @@ class Admin extends React.Component {
                     <section className="admin">
                         <div className="container">
                             <h1>Are you sure you want to delete this company?</h1>
-                            <p className="confirmDeleteText">{this.state.deleteCompany}</p>
-                            <img className="confirmDeleteImg" src={companyInfo.image}/>
+                            <p className="confirmText">{this.state.deleteCompany}</p>
+                            <img className="confirmImg" src={companyInfo.image}/>
                             <button className="confirmDeleteButton"
                             onClick={() => {
                                 return fetch(`${API_BASE_URL}/company/${this.state.deleteCompanyId}`, {
@@ -510,10 +518,148 @@ class Admin extends React.Component {
                                 .catch(err => console.log(err))
                             }}
                             >Confirm Deletion</button>
-                            <button className="confirmDeleteButton" onClick={() => this.setState({deleteCompanyId: null, deleteCompany: null})}>Cancel Deletion</button>
+                            <button className="confirmCancelButton" onClick={() => this.setState({deleteCompanyId: null, deleteCompany: null})}>Cancel Deletion</button>
                         </div>
                     </section>
                 )
+            } else if (this.state.editRamenId) {
+                const ramenInfo = this.props.ramen.filter((ramen) => String(ramen.id) === String(this.state.editRamenId))[0];
+                return (
+                    <section className="admin">
+                        <div className="container">
+                            <h1>Edit Ramen</h1>
+                            <form onSubmit={(event) => {
+                                    event.preventDefault()
+                                }}
+                                className="admin__edit-form">
+                                <label className="admin__edit-form__label">Ramen Name</label>
+                                <input 
+                                onChange={(event) => this.setState({editRamenNameValue: event.target.value})} 
+                                defaultValue={ramenInfo.name}
+                                className="admin__edit-form__input"/>
+                                <label className="admin__edit-form__label">Company ID</label>
+                                <input 
+                                onChange={(event) => this.setState({editRamenCompanyValue: event.target.value})} 
+                                defaultValue={ramenInfo.companyId.id} 
+                                className="admin__edit-form__input"/>
+                                <label className="admin__edit-form__label">Product Image URL</label>
+                                <input 
+                                onChange={(event) => this.setState({editRamenImageValue: event.target.value})} 
+                                defaultValue={ramenInfo.image} 
+                                className="admin__edit-form__input url-input"/>
+                                <button className="confirmDeleteButton"
+                                    onClick={() => {
+                                        const postBody = {
+                                            name: this.state.editRamenNameValue,
+                                            companyId: this.state.editRamenCompanyValue,
+                                            image: this.state.editRamenImageValue
+                                        }
+                                        return fetch(`${API_BASE_URL}/ramen/${this.state.editRamenId}`, {
+                                            method: 'PUT',
+                                            body: JSON.stringify(postBody),
+                                            headers: {
+                                                // Authorization: `Bearer ${authToken}`,
+                                                'Content-Type': 'application/json'
+                                            }
+                                        })
+                                        .then((res) => {
+                                            window.location.reload();
+                                            this.setState({editRamenId: null, editRamen: null});
+                                        })
+                                        .catch(err => console.log(err))
+                                    }}
+                                >Confirm Edit</button>
+                                <button className="confirmCancelButton" onClick={() => this.setState({editRamenId: null, editRamen: null})}>Cancel Edit</button>
+                            </form>
+                        </div>
+                    </section>
+                )
+            } else if (this.state.editTagId) {
+                const tagInfo = this.props.tags.filter((tag) => String(tag.id) === String(this.state.editTagId))[0];
+                return (
+                    <section className="admin">
+                        <div className="container">
+                            <h1>Edit Tag</h1>
+                            <form onSubmit={(event) => {
+                                    event.preventDefault()
+                                }}
+                                className="admin__edit-form">
+                                <label className="admin__edit-form__label">Tag Name</label>
+                                <input 
+                                onChange={(event) => this.setState({editTagNameValue: event.target.value})} 
+                                defaultValue={tagInfo.name}
+                                className="admin__edit-form__input"/>
+                                <button className="confirmDeleteButton"
+                                    onClick={() => {
+                                        const postBody = {
+                                            name: this.state.editTagNameValue
+                                        }
+                                        return fetch(`${API_BASE_URL}/tags/${this.state.editTagId}`, {
+                                            method: 'PUT',
+                                            body: JSON.stringify(postBody),
+                                            headers: {
+                                                // Authorization: `Bearer ${authToken}`,
+                                                'Content-Type': 'application/json'
+                                            }
+                                        })
+                                        .then((res) => {
+                                            window.location.reload();
+                                            this.setState({editTagId: null, editTag: null});
+                                        })
+                                        .catch(err => console.log(err))
+                                    }}
+                                >Confirm Edit</button>
+                                <button className="confirmCancelButton" onClick={() => this.setState({editTagId: null, editTag: null})}>Cancel Edit</button>
+                            </form>
+                        </div>
+                    </section>
+                )
+            } else if (this.state.editCompanyId) {
+                const companyInfo = this.state.companies.filter((company) => String(company.id) === String(this.state.editCompanyId))[0];
+                return (
+                    <section className="admin">
+                        <div className="container">
+                            <h1>Edit Company</h1>
+                            <form onSubmit={(event) => {
+                                    event.preventDefault()
+                                }}
+                                className="admin__edit-form">
+                                <label className="admin__edit-form__label">Company Name</label>
+                                <input 
+                                onChange={(event) => this.setState({editCompanyNameValue: event.target.value})} 
+                                defaultValue={companyInfo.name}
+                                className="admin__edit-form__input"/>
+                                <label className="admin__edit-form__label">Company Home Page URL</label>
+                                <input 
+                                onChange={(event) => this.setState({editCompanyUrlValue: event.target.value})} 
+                                defaultValue={companyInfo.companyUrl}
+                                className="admin__edit-form__input"/>
+                                <button className="confirmDeleteButton"
+                                    onClick={() => {
+                                        const postBody = {
+                                            name: this.state.editCompanyNameValue,
+                                            companyUrl: this.state.editCompanyUrl
+                                        }
+                                        return fetch(`${API_BASE_URL}/company/${this.state.editCompanyId}`, {
+                                            method: 'PUT',
+                                            body: JSON.stringify(postBody),
+                                            headers: {
+                                                // Authorization: `Bearer ${authToken}`,
+                                                'Content-Type': 'application/json'
+                                            }
+                                        })
+                                        .then((res) => {
+                                            window.location.reload();
+                                            this.setState({editCompanyId: null, editCompany: null});
+                                        })
+                                        .catch(err => console.log(err))
+                                    }}
+                                >Confirm Edit</button>
+                                <button className="confirmCancelButton" onClick={() => this.setState({editCompanyId: null, editCompany: null})}>Cancel Edit</button>
+                            </form>
+                        </div>
+                    </section>
+                    )
             }
 
             return (
@@ -539,5 +685,4 @@ const mapStateToProps = state => ({
     tags: state.ramen.tagData
 });
 
-// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
 export default withRouter(connect(mapStateToProps)(Admin));

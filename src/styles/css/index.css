@@ -260,14 +260,39 @@ svg {
   padding: 3px;
   margin: 0 1rem; }
 
-.confirmDeleteText {
+.admin__edit__text {
+  font-size: 18px; }
+
+.admin__edit__button {
+  font-size: 14px;
+  padding: 3px;
+  margin: 0 1rem; }
+
+.admin__edit-form__label {
+  display: block; }
+
+.admin__edit-form__input {
+  display: block; }
+
+.url-input {
+  width: 100%; }
+
+.confirmText {
   font-size: 36px;
   font-weight: bold; }
 
-.confirmDeleteImg {
+.confirmImg {
   width: 200px;
   display: block; }
 
+.confirmCancelButton {
+  margin: 5px;
+  padding: 5px;
+  background-color: green;
+  color: white; }
+
 .confirmDeleteButton {
   margin: 5px;
-  padding: 5px; }
+  padding: 5px;
+  background-color: red;
+  color: white; }
