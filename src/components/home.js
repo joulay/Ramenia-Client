@@ -37,11 +37,11 @@ class Home extends React.Component {
         let resultArr = [];
         while (count < 5) {
             if (count+1 <= rating) {
-                resultArr.push('full');
+                resultArr.push({star: 'full', key: count});
             } else if (count < rating) {
-                resultArr.push('half');
+                resultArr.push({star: 'half', key: count});
             } else {
-                resultArr.push('empty');
+                resultArr.push({star: 'empty', key: count});
             }
             count++;
         }
@@ -51,13 +51,16 @@ class Home extends React.Component {
     render() {
         console.log(this.state)
         
-        const topRated = this.props.ramen.sort((a, b) => b.overallRating - a.overallRating).slice(0,5).map((item) => {
+        const topRated = this.props.ramen.filter((item) => item.overallRating > 0)
+        .sort((a, b) => parseInt(b.overallRating) - parseInt(a.overallRating))
+        .slice(0,5)
+        .map((item) => {
             let redirectString = '/product-page' + '?ramenId=' + item.id;
             const rating = this.countStars(item.overallRating);
             const stars = rating.map((star) => {
-                if (star === 'full') {
+                if (star.star === 'full') {
                     return <img key={star.key} src={fullStar}/>
-                } else if (star === 'half') {
+                } else if (star.star === 'half') {
                     return <img key={star.key} src={halfStar}/>
                 } else {
                     return <img key={star.key} src={emptyStar}/>
@@ -65,6 +68,7 @@ class Home extends React.Component {
             })
             return (
                 <li key={item.name} 
+                    id={item.overallRating}
                 // onClick={() => this.selectProduct(item.id)} 
                 className="home__featured__li">
                     <a href={redirectString}><img src={item.image} className="home__featured__image"/></a>
@@ -75,6 +79,8 @@ class Home extends React.Component {
                 </li>)
         })
         
+        console.log(topRated);
+
         let display = (
             <div>
                 <div className="home__featured container">
