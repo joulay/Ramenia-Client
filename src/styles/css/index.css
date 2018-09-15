@@ -251,3 +251,23 @@ svg {
 
 .admin__confirm__image img {
   width: 200px; }
+
+.admin__delete__text {
+  font-size: 18px; }
+
+.admin__delete__button {
+  font-size: 14px;
+  padding: 3px;
+  margin: 0 1rem; }
+
+.confirmDeleteText {
+  font-size: 36px;
+  font-weight: bold; }
+
+.confirmDeleteImg {
+  width: 200px;
+  display: block; }
+
+.confirmDeleteButton {
+  margin: 5px;
+  padding: 5px; }

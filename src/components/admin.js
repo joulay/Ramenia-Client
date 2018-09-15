@@ -182,6 +182,45 @@ class Admin extends React.Component {
                     </ul>
                 </div>
             )
+        } else if (this.state.tab === 'delete') {
+            const ramen = this.props.ramen.map((ramen) => {
+                return (
+                    <li key={ramen.id} value={ramen.id} className="admin__delete__li">
+                        <p className="admin__delete__text"><button className="admin__delete__button" value={ramen.id} onClick={(event) => this.setState({deleteRamen: ramen.name, deleteRamenId: ramen.id})}>Delete</button>{ramen.name}</p>
+                    </li>
+                )
+            });
+            const tags = this.props.tags.map((tag) => {
+                return (
+                    <li key={tag.id} value={tag.id} className="admin__delete__li">
+                        <p className="admin__delete__text"><button className="admin__delete__button" value={tag.id} onClick={(event) => this.setState({deleteTag: tag.name, deleteTagId: tag.id})}>Delete</button>{tag.name}</p>
+                    </li>
+                )
+            });
+            const companies = this.state.companies.map((company) => {
+                return (
+                    <li key={company.id} value={company.id} className="admin__delete__li">
+                        <p className="admin__delete__text"><button className="admin__delete__button" value={company.id} onClick={(event) => this.setState({deleteCompany: company.name, deleteCompanyId: company.id})}>Delete</button>{company.name}</p>
+                    </li>
+                )
+            });
+            menu = (
+                <div className="admin">
+                    <h2>Delete Ramen/Company/Tag</h2>
+                    <h3>Ramen</h3>
+                    <ul className="admin__delete__ramen-ul">
+                        {ramen}
+                    </ul>
+                    <h3>Tags</h3>
+                    <ul className="admin__delete__ramen-ul">
+                        {tags}
+                    </ul>
+                    <h3>Companies</h3>
+                    <ul className="admin__delete__ramen-ul">
+                        {companies}
+                    </ul>
+                </div>
+            )
         }
         
         if (this.state.confirm === 'confirmRamen') {
@@ -204,7 +243,7 @@ class Admin extends React.Component {
                 this.setState({confirm: false})
             }
             return (
-                <section className="admin container">
+                <section className="admin">
                     {navBar}
                     <form onSubmit={(event) => {
                         event.preventDefault();
@@ -402,6 +441,81 @@ class Admin extends React.Component {
             </section>
             )
         } else {
+
+            if (this.state.deleteRamenId) {
+                const ramenInfo = this.props.ramen.filter((ramen) => String(ramen.id) === String(this.state.deleteRamenId))[0];
+                return (
+                    <section className="admin">
+                        <div className="container">
+                            <h1>Are you sure you want to delete this ramen?</h1>
+                            <p className="confirmDeleteText">{this.state.deleteRamen}</p>
+                            <img className="confirmDeleteImg" src={ramenInfo.image}/>
+                            <button className="confirmDeleteButton"
+                            onClick={() => {
+                                return fetch(`${API_BASE_URL}/ramen/${this.state.deleteRamenId}`, {
+                                    method: 'DELETE'
+                                })
+                                .then((res) => {
+                                    window.location.reload();
+                                    this.setState({deleteRamenId: null, deleteRamen: null});
+                                })
+                                .catch(err => console.log(err))
+                            }}
+                            >Confirm Deletion</button>
+                            <button className="confirmDeleteButton" onClick={() => this.setState({deleteRamenId: null, deleteRamen: null})}>Cancel Deletion</button>
+                        </div>
+                    </section>
+                )
+            } else if (this.state.deleteTagId) {
+                const tagInfo = this.props.tags.filter((tag) => String(tag.id) === String(this.state.deleteTagId))[0];
+                return (
+                    <section className="admin">
+                        <div className="container">
+                            <h1>Are you sure you want to delete this tag?</h1>
+                            <p className="confirmDeleteText">{this.state.deleteTag}</p>
+                            <img className="confirmDeleteImg" src={tagInfo.image}/>
+                            <button className="confirmDeleteButton"
+                            onClick={() => {
+                                return fetch(`${API_BASE_URL}/tags/${this.state.deleteTagId}`, {
+                                    method: 'DELETE'
+                                })
+                                .then((res) => {
+                                    window.location.reload();
+                                    this.setState({deleteTagId: null, deleteTag: null});
+                                })
+                                .catch(err => console.log(err))
+                            }}
+                            >Confirm Deletion</button>
+                            <button className="confirmDeleteButton" onClick={() => this.setState({deleteTagId: null, deleteTag: null})}>Cancel Deletion</button>
+                        </div>
+                    </section>
+                )
+            } else if (this.state.deleteCompanyId) {
+                const companyInfo = this.state.companies.filter((company) => String(company.id) === String(this.state.deleteCompanyId))[0];
+                return (
+                    <section className="admin">
+                        <div className="container">
+                            <h1>Are you sure you want to delete this company?</h1>
+                            <p className="confirmDeleteText">{this.state.deleteCompany}</p>
+                            <img className="confirmDeleteImg" src={companyInfo.image}/>
+                            <button className="confirmDeleteButton"
+                            onClick={() => {
+                                return fetch(`${API_BASE_URL}/company/${this.state.deleteCompanyId}`, {
+                                    method: 'DELETE'
+                                })
+                                .then((res) => {
+                                    window.location.reload();
+                                    this.setState({deleteCompanyId: null, deleteCompany: null});
+                                })
+                                .catch(err => console.log(err))
+                            }}
+                            >Confirm Deletion</button>
+                            <button className="confirmDeleteButton" onClick={() => this.setState({deleteCompanyId: null, deleteCompany: null})}>Cancel Deletion</button>
+                        </div>
+                    </section>
+                )
+            }
+
             return (
                 <section className="admin">
                     {navBar}

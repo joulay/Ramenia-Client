@@ -71,4 +71,36 @@
 
     }
 
+    &__delete {
+
+        &__li {
+            
+        }
+
+        &__text {
+            font-size: 18px;
+        }
+
+        &__button {
+            font-size: 14px;
+            padding: 3px;
+            margin: 0 1rem;
+        }
+    }
+
+}
+
+.confirmDeleteText {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.confirmDeleteImg {
+    width: 200px;
+    display: block;
+}
+
+.confirmDeleteButton {
+    margin: 5px;
+    padding: 5px;
 }
