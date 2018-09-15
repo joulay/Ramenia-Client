@@ -82,16 +82,15 @@ svg {
       background-color: #fcc;
       padding: 14px; }
     .home__cover__search {
-      margin-top: 7rem; }
-      .home__cover__search__input {
-        padding: 1rem;
-        background-color: #338;
-        color: #fff;
-        font-weight: bold; }
-        .home__cover__search__input::placeholder {
-          color: #aaa;
-          font-style: italic;
-          font-weight: normal; }
+      margin-top: 7rem;
+      padding: 1rem;
+      background-color: #338;
+      color: #fff;
+      font-weight: bold; }
+      .home__cover__search::placeholder {
+        color: #aaa;
+        font-style: italic;
+        font-weight: normal; }
       .home__cover__search__button {
         padding: 1rem; }
     .home__cover__login {
@@ -133,6 +132,24 @@ svg {
     display: flex;
     justify-content: space-around;
     align-content: row; }
+  .home__search-results__header {
+    padding: 1rem 0;
+    border-bottom: 1px solid #aaa; }
+  .home__search-results__ul {
+    display: flex;
+    justify-content: space-around;
+    align-content: row;
+    flex-wrap: wrap; }
+  .home__search-results__li {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center; }
+  .home__search-results__image {
+    width: 200px; }
+  .home__search-results__clear {
+    padding: 5px;
+    font-size: 18px; }
 
 .product-page__main {
   margin-top: 10rem;
@@ -217,5 +234,5 @@ svg {
 .admin__confirm__company {
   font-size: 48px; }
 
-.admin__confirm__image {
+.admin__confirm__image img {
   width: 200px; }

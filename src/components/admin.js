@@ -7,9 +7,6 @@ import { API_BASE_URL } from '../config';
 
 import {selectRamen} from '../actions/selections';
 
-import neoguri from '../styles/images/neoguri.jpeg';
-// import { BrowserRouter as Router } from 'react-router-dom'; 
-
 class Admin extends React.Component {
     constructor(props) {
         super(props);
@@ -38,6 +35,17 @@ class Admin extends React.Component {
     render() {
         console.log(this.state);
         console.log(this.props);
+
+        const navBar = (
+            <nav className="admin__nav">
+                <ul className="admin__nav__ul">
+                    <li onClick={() => this.setState({tab: 'createRamen', confirm: false})} className="admin__nav__ul__li">Create Ramen</li>
+                    <li onClick={() => this.setState({tab: 'createCompany', confirm: false})} className="admin__nav__ul__li">Create Company</li>
+                    <li onClick={() => this.setState({tab: 'createTag', confirm: false})} className="admin__nav__ul__li">Create Tag</li>
+                    <li onClick={() => this.setState({tab: 'addTagToRamen', confirm: false})} className="admin__nav__ul__li">Add Tag to Ramen</li>
+                </ul>
+            </nav>
+            )
 
         const companyList = this.state.companies.map((company) => {
             return (
@@ -78,7 +86,21 @@ class Admin extends React.Component {
         } else if (this.state.tab === 'createCompany') {
             menu = (
                 <div className="admin">
-                    <h2>Add Company</h2>
+                    <ul className="admin__company-list">
+                        <h2>Company ID Information</h2>
+                        {companyList}
+                    </ul>
+                    <h2>Create Company</h2>
+                    <form onSubmit={(event) => {
+                        event.preventDefault()
+                        this.setState({confirm: 'confirmCompany'})
+                    }} className="admin__form">
+                        <label className="admin__label">Company Name</label>
+                        <input onChange={(event) => this.setState({companyName: event.target.value})} className="admin__input" />
+                        <label className="admin__label">Company Home Page URL</label>
+                        <input onChange={(event) => this.setState({companyUrl: event.target.value})} className="admin__input" />
+                        <button className="admin__button">Check</button>
+                    </form>
                 </div>
             )
         } else if (this.state.tab === 'createTag') {
@@ -117,14 +139,7 @@ class Admin extends React.Component {
             }
             return (
                 <section className="admin container">
-                    <nav className="admin__nav">
-                        <ul className="admin__nav__ul">
-                            <li onClick={() => this.setState({tab: 'createRamen', confirm: false})} className="admin__nav__ul__li">Create Ramen</li>
-                            <li onClick={() => this.setState({tab: 'createCompany', confirm: false})} className="admin__nav__ul__li">Create Company</li>
-                            <li onClick={() => this.setState({tab: 'createTag', confirm: false})} className="admin__nav__ul__li">Create Tag</li>
-                            <li onClick={() => this.setState({tab: 'addTagToRamen', confirm: false})} className="admin__nav__ul__li">Add Tag to Ramen</li>
-                        </ul>
-                    </nav>
+                    {navBar}
                     <form onSubmit={(event) => {
                         event.preventDefault();
                         const postBody = {
@@ -157,6 +172,47 @@ class Admin extends React.Component {
                         <button>Confirm Submission</button>
                     </form>
                 </section>
+            )
+        } else if (this.state.confirm === 'confirmCompany') {
+            let companyName;
+            let companyCheck = false;
+            this.state.companies.forEach((company) => {
+                if (company.name === this.state.companyName) {
+                    alert('A company with this name already exists in the database!')
+                    this.setState({confirm: false})
+                }
+            })
+            return (
+                <section className="admin container">
+                {navBar}
+                <form onSubmit={(event) => {
+                    event.preventDefault();
+                    const postBody = {
+                        name: this.state.companyName,
+                        companyUrl: this.state.companyUrl,
+                    }
+                    return fetch(`${API_BASE_URL}/company`, {
+                        method: 'POST',
+                        body: JSON.stringify(postBody),
+                        headers: {
+                            // Authorization: `Bearer ${authToken}`,
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(res => {res.json()})
+                    .then(result => {
+                        this.setState({confirm: false})
+                    })
+                    .catch(err => console.log(err))
+                }}>
+                    <h2>Please check to make sure the following is correct:</h2>
+                    <ul className="admin__confirm">
+                        <li className="admin__confirm__name">Name of Company: {this.state.companyName}</li>
+                        <li className="admin__confirm__company">Company Home Page: {this.state.companyUrl}</li>
+                    </ul>
+                    <button>Confirm Submission</button>
+                </form>
+            </section>
             )
         } else {
             return (

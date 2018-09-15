@@ -30,3 +30,21 @@ export const getRamenData = () => (dispatch) => {
     })
     .catch(err => console.log(err))
 }
+
+export const submitRamenReview = (ramenId, postBody) => (dispatch) => {
+
+    return fetch(`${API_BASE_URL}/rating/${ramenId}`, {
+        method: 'POST',
+        body: JSON.stringify(postBody),
+        headers: {
+            // Authorization: `Bearer ${authToken}`,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(result => {
+        dispatch(getRamenData());
+        return result;
+    })
+    .catch(err => console.log(err))
+}

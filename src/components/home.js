@@ -7,7 +7,9 @@ import { API_BASE_URL } from '../config';
 
 import {selectRamen} from '../actions/selections';
 
-import neoguri from '../styles/images/neoguri.jpeg';
+import fullStar from '../styles/images/stars/PNG/star-full.png';
+import halfStar from '../styles/images/stars/PNG/star-half.png';
+import emptyStar from '../styles/images/stars/PNG/star-empty.png';
 // import { BrowserRouter as Router } from 'react-router-dom'; 
 //font-family: 'Kosugi Maru', sans-serif;
 
@@ -17,7 +19,8 @@ class Home extends React.Component {
 
         this.state = {
             ramen: [],
-            style: 'Spicy'
+            style: 'Spicy',
+            search: ''
         }
     }
 
@@ -29,35 +32,51 @@ class Home extends React.Component {
 
     }
 
+    countStars(rating) {
+        let count = 0;
+        let resultArr = [];
+        while (count < 5) {
+            if (count+1 <= rating) {
+                resultArr.push('full');
+            } else if (count < rating) {
+                resultArr.push('half');
+            } else {
+                resultArr.push('empty');
+            }
+            count++;
+        }
+        return resultArr;
+    }
+
     render() {
-        console.log(this.props)
+        console.log(this.state)
+        
         const topRated = this.props.ramen.sort((a, b) => b.overallRating - a.overallRating).slice(0,5).map((item) => {
             let redirectString = '/product-page' + '?ramenId=' + item.id;
+            const rating = this.countStars(item.overallRating);
+            const stars = rating.map((star) => {
+                if (star === 'full') {
+                    return <img key={star.key} src={fullStar}/>
+                } else if (star === 'half') {
+                    return <img key={star.key} src={halfStar}/>
+                } else {
+                    return <img key={star.key} src={emptyStar}/>
+                }
+            })
             return (
-            <li key={item.name} 
-            // onClick={() => this.selectProduct(item.id)} 
-            className="home__featured__li">
-                <a href={redirectString}><img src={item.image} className="home__featured__image"/></a>
-                <span>{item.overallRating}</span>
-            </li>)
+                <li key={item.name} 
+                // onClick={() => this.selectProduct(item.id)} 
+                className="home__featured__li">
+                    <a href={redirectString}><img src={item.image} className="home__featured__image"/></a>
+                    <span className="home__featured__details">
+                        <p className="home__featured__name">{item.name}</p>
+                        <p className="home__featured__rating">{stars}</p>
+                    </span>
+                </li>)
         })
         
-        return (
-            <section className="home">
-                <div className="home__cover">
-                    <h1 className="home__cover__header">Ramenia</h1>
-                    <form className="home__cover__search">
-                        <input placeholder="search" className="home__cover__search__input"></input>
-                        <button className="home__cover__search__button">
-                            Icon
-                        </button>
-                    </form>
-                    <button className="home__cover__login">
-                        <p className="home__cover__login__content">
-                            Login/Signup
-                        </p>
-                    </button>
-                </div>
+        let display = (
+            <div>
                 <div className="home__featured container">
                     <h2 className="home__featured__header">Top Rated Ramen</h2>
                     <ul className="home__featured__ul">
@@ -75,9 +94,49 @@ class Home extends React.Component {
                         <li className="home__by-type__types-list__item home__by-type__soupless" onClick={() => this.setState({style: 'Soupless'})}>Soupless</li>
                     </ul>
                     <ul className="home__by-type__ul">
-                        {topRated}
+
                     </ul>
                 </div>
+            </div>
+        )
+        if (this.state.search.length > 0) {
+            const results = this.props.ramen.map((item) => {
+                if (item.name.toLowerCase().includes(this.state.search)) {
+                    let redirectString = '/product-page' + '?ramenId=' + item.id;
+                    return (
+                    <li key={item.name} 
+                    // onClick={() => this.selectProduct(item.id)} 
+                    className="home__search-results__li">
+                        <a href={redirectString}><img src={item.image} className="home__search-results__image"/></a>
+                        <span className="home__search-results__details">
+                            <p className="home__search-results__name">{item.name}</p>
+                            <p className="home__search-results__rating">{item.overallRating}</p>
+                        </span>
+                    </li>
+                    )
+                }
+            })
+            display = (
+                <div className="home__search-results container">
+                    <h2 className="home__search-results__header">Search Results <button onClick={() => this.setState({search: ''})} className="home__search-results__clear">Clear Results</button> </h2>
+                    <ul className="home__search-results__ul">
+                        {results}
+                    </ul>
+                </div>
+            )
+        }
+        return (
+            <section className="home">
+                <div className="home__cover">
+                    <h1 className="home__cover__header">Ramenia</h1>
+                    <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} placeholder="search" className="home__cover__search"></input>
+                    <button className="home__cover__login">
+                        <p className="home__cover__login__content">
+                            Login/Signup
+                        </p>
+                    </button>
+                </div>
+                {display}
             </section>
     )
     }
