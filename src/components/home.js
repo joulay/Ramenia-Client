@@ -10,6 +10,8 @@ import {selectRamen} from '../actions/selections';
 import fullStar from '../styles/images/stars/PNG/star-full.png';
 import halfStar from '../styles/images/stars/PNG/star-half.png';
 import emptyStar from '../styles/images/stars/PNG/star-empty.png';
+// import { BrowserRouter as Router } from 'react-router-dom'; 
+//font-family: 'Kosugi Maru', sans-serif;
 
 class Home extends React.Component {
     constructor(props) {
@@ -136,7 +138,6 @@ class Home extends React.Component {
                 </div>
                 {display}
             </section>
-        
     )
     }
 }
