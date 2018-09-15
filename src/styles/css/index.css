@@ -202,6 +202,9 @@ svg {
   .product-page__review__button {
     padding: 5px; }
 
+.product-page__reviews {
+  margin-top: 50px; }
+
 .admin__nav {
   border-bottom: 3px solid black; }
   .admin__nav__ul {

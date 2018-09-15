@@ -41,17 +41,24 @@ class ProductPage extends React.Component {
                     })
                     .then(res => res.json())
                     .then(result => {
-                        let resp = result;
-                        let totalRatings = [];
-                        for (let j=0; j<result.ratings.length; j++) {
-                            totalRatings.push(result.ratings[j].overall);
+                        try {
+                            let resp = result;
+                            let totalRatings = [];
+                            for (let j=0; j<result.ratings.length; j++) {
+                                totalRatings.push(result.ratings[j].overall);
+                            }
+                            resp.overallRating = String(Math.round((totalRatings.reduce((a,b) => a+b) / totalRatings.length) * 10) / 10);
+                            if (resp.overallRating.length === 1) {
+                                resp.overallRating = String(resp.overallRating) + '.0';
+                            }
+                            this.setState({ramen: resp})
+                            return resp;
+                        } catch (e) {
+                            let resp = result
+                            resp.overallRating = '0.0'
+                            this.setState({ramen: resp})
+                            return result;
                         }
-                        resp.overallRating = String(Math.round((totalRatings.reduce((a,b) => a+b) / totalRatings.length) * 10) / 10);
-                        if (resp.overallRating.length === 1) {
-                            resp.overallRating = String(resp.overallRating) + '.0';
-                        }
-                        this.setState({ramen: resp})
-                        return resp;
                     })
                     .catch(err => console.log(err))
                 }, 1000)
@@ -82,6 +89,24 @@ class ProductPage extends React.Component {
     render() {
         console.log(this.state)
         try {
+            // if (this.state.ramen.ratings.length < 1) {
+            //     return (
+            //         <section className="product-page">
+            //             <div className="product-page__main container">
+            //                 <div className="product-page__main__left">
+            //                     <img className="product-page__main__favorite" src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Favorite-Heart-icon.png" />
+            //                     <img className="product-page__main__image" src={this.state.ramen.image} />
+            //                     {/* <span className="product-page__main__user-rating">{stars}</span> */}
+            //                 </div>
+            //                 {reviewForm}
+            //             </div>
+            //             <div className="product-page__reviews container">
+            //                 <ul className="product-page__reviews__ul">
+            //                 </ul>
+            //             </div>
+            //         </section>
+            //     )
+            // }
             let starArray;
             let count = 0;
             const reviews = this.state.ramen.ratings;
@@ -227,6 +252,7 @@ class ProductPage extends React.Component {
                         }
                         this.props.dispatch(submitRamenReview(this.state.ramen.id, postBody))
                         this.setState({writeReview: false})
+                        window.location.reload();
                     }}
                     className="product-page__review__form">
                         <p className="product-page__review__rating">Rating: {reviewStars}</p>
