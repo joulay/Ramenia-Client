@@ -146,15 +146,76 @@ svg {
     width: 47.5%; }
   .product-page__main__right {
     width: 47.5%;
+    padding: 10px;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    align-items: center; }
+    align-items: center;
+    background-color: #bbb;
+    margin: 0; }
   .product-page__main__favorite {
     width: 50px;
     margin-left: 100px; }
   .product-page__main__image {
     align-self: center;
-    width: 200px; }
+    width: 300px; }
   .product-page__main__number-rating {
-    font-size: 48px; }
+    font-size: 96px; }
+  .product-page__main__review-button {
+    padding: 5px; }
+
+.product-page__review {
+  width: 47.5%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  background-color: #bbb;
+  margin: 0; }
+  .product-page__review__form {
+    float: right;
+    margin: 0 auto; }
+  .product-page__review__text {
+    font-size: 16px;
+    display: block; }
+  .product-page__review__go-back {
+    cursor: pointer;
+    margin-right: 200px; }
+  .product-page__review__button {
+    padding: 5px; }
+
+.admin__nav {
+  border-bottom: 3px solid black; }
+  .admin__nav__ul {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row; }
+    .admin__nav__ul__li {
+      font-size: 24px; }
+      .admin__nav__ul__li:hover {
+        cursor: pointer;
+        color: blue; }
+
+.admin__company-list {
+  background-color: #ccc;
+  padding: 1rem; }
+
+.admin__label {
+  display: block; }
+
+.admin__input {
+  display: block; }
+
+.admin__button {
+  margin: 1rem 0;
+  display: block; }
+
+.admin__confirm__name {
+  font-size: 48px; }
+
+.admin__confirm__company {
+  font-size: 48px; }
+
+.admin__confirm__image {
+  width: 200px; }

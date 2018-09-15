@@ -1,0 +1,59 @@
+.admin {
+
+    &__nav {
+        border-bottom: 3px solid black;
+
+        &__ul {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            
+            &__li {
+                font-size: 24px;
+
+                &:hover {
+                    cursor: pointer;
+                    color: blue;
+                }
+            }
+        }
+    }
+
+    &__company-list {
+        background-color: #ccc;
+        padding: 1rem;
+    }
+
+    &__form {
+
+    }
+
+    &__label {
+        display: block;
+    }
+
+    &__input {
+        display: block;
+    }
+
+    &__button {
+        margin: 1rem 0;
+        display: block;
+    }
+
+    &__confirm {
+
+        &__name {
+            font-size: 48px;
+        }
+
+        &__company {
+            font-size: 48px;
+        }
+
+        &__image {
+            width: 200px;
+        }
+
+    }
+}

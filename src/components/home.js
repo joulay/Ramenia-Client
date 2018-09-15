@@ -25,34 +25,18 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        return fetch(`${API_BASE_URL}/ramen`, {
-            method: 'GET'
-        })
-        .then(res => res.json())
-        .then(result => {
-            let resp = result;
-            for (let i=0; i<result.length; i++) {
-                let totalRatings = []
-                for (let j=0; j<result[i].ratings.length; j++) {
-                    totalRatings.push(result[i].ratings[j].overall);
-                }
-                resp[i].overallRating = totalRatings.reduce((a,b) => a+b) / totalRatings.length;
-            }
-            this.setState({ramen: resp})
-            return resp;
-        })
-        .catch(err => console.log(err))
+
     }
 
     render() {
-        if (this.props.selected) {
-            let redirectString = '/product-page' + '?ramenId=' + this.props.selected;
-            return <Redirect to={redirectString}/>
-        }
-        const topRated = this.state.ramen.map((item) => {
+        console.log(this.props)
+        const topRated = this.props.ramen.sort((a, b) => b.overallRating - a.overallRating).slice(0,5).map((item) => {
+            let redirectString = '/product-page' + '?ramenId=' + item.id;
             return (
-            <li key={item.name} onClick={() => this.selectProduct(item.id)} className="home__featured__li">
-                <img src={item.image} className="home__featured__image"/>
+            <li key={item.name} 
+            // onClick={() => this.selectProduct(item.id)} 
+            className="home__featured__li">
+                <a href={redirectString}><img src={item.image} className="home__featured__image"/></a>
                 <span>{item.overallRating}</span>
             </li>)
         })
@@ -103,7 +87,8 @@ const mapStateToProps = state => ({
     hasAuthToken: state.auth.authToken !== null,
     currentUser: state.auth.currentUser,
     loggedIn: state.auth.currentUser !== null,
-    selected: state.selections.selected
+    selected: state.selections.selected,
+    ramen: state.ramen.data
 });
 
 // Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
