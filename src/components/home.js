@@ -107,6 +107,16 @@ class Home extends React.Component {
             const results = this.props.ramen.map((item) => {
                 if (item.name.toLowerCase().includes(this.state.search)) {
                     let redirectString = '/product-page' + '?ramenId=' + item.id;
+                    const rating = this.countStars(item.overallRating);
+                    const stars = rating.map((star) => {
+                        if (star.star === 'full') {
+                            return <img key={star.key} src={fullStar}/>
+                        } else if (star.star === 'half') {
+                            return <img key={star.key} src={halfStar}/>
+                        } else {
+                            return <img key={star.key} src={emptyStar}/>
+                        }
+                    })
                     return (
                     <li key={item.name} 
                     // onClick={() => this.selectProduct(item.id)} 
@@ -114,7 +124,7 @@ class Home extends React.Component {
                         <a href={redirectString}><img src={item.image} className="home__search-results__image"/></a>
                         <span className="home__search-results__details">
                             <p className="home__search-results__name">{item.name}</p>
-                            <p className="home__search-results__rating">{item.overallRating}</p>
+                            <p className="home__search-results__rating">{stars}</p>
                         </span>
                     </li>
                     )

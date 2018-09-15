@@ -6,6 +6,12 @@ export const saveRamenData = (data) => ({
     data: data
 })
 
+export const GET_TAG_DATA = 'GET_TAG_DATA';
+export const saveTagData = (data) => ({
+    type: GET_TAG_DATA,
+    data: data
+})
+
 export const getRamenData = () => (dispatch) => {
 
     return fetch(`${API_BASE_URL}/ramen`, {
@@ -30,6 +36,20 @@ export const getRamenData = () => (dispatch) => {
     })
     .catch(err => console.log(err))
 }
+
+export const getTagData = () => (dispatch) => {
+
+    return fetch(`${API_BASE_URL}/tags`, {
+        method: 'GET'
+    })
+    .then(res => res.json())
+    .then(result => {
+        dispatch(saveTagData(result))
+        return result;
+    })
+    .catch(err => console.log(err))
+}
+
 
 export const submitRamenReview = (ramenId, postBody) => (dispatch) => {
 

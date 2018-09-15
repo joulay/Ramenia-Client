@@ -1,7 +1,8 @@
-import {GET_RAMEN_DATA} from '../actions/ramen';
+import {GET_RAMEN_DATA, GET_TAG_DATA} from '../actions/ramen';
 
 const initialState = {
-    data: []
+    data: [],
+    tagData: []
 }
 
 export default function reducer(state = initialState, action) {
@@ -10,6 +11,10 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             data: action.data
         });
+    } else if (action.type === GET_TAG_DATA) {
+        return Object.assign({}, state, {
+            tagData: action.data 
+        })
     }
 
     return state;
