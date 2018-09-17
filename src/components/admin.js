@@ -195,7 +195,13 @@ class Admin extends React.Component {
                 return (
                     <li key={ramen.id} value={ramen.id} className="admin__delete__li">
                         <p className="admin__delete__text">
-                        <button className="admin__edit__button" value={ramen.id} onClick={(event) => this.setState({editRamen: ramen.name, editRamenId: ramen.id})}>Edit</button>
+                        <button className="admin__edit__button" value={ramen.id} onClick={(event) => this.setState({
+                            editRamen: ramen.name, 
+                            editRamenId: ramen.id,
+                            editRamenNameValue: ramen.name,
+                            editRamenCompanyValue: ramen.companyId.id,
+                            editRamenImageValue: ramen.image
+                        })}>Edit</button>
                         <button className="admin__delete__button" value={ramen.id} onClick={(event) => this.setState({deleteRamen: ramen.name, deleteRamenId: ramen.id})}>Delete</button>
                         {ramen.name}</p>
                     </li>
@@ -538,7 +544,6 @@ class Admin extends React.Component {
                         </li>
                     ) 
                 })
-
                 const ramenInfo = this.props.ramen.filter((ramen) => String(ramen.id) === String(this.state.editRamenId))[0];
                 return (
                     <section className="admin">

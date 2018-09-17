@@ -119,19 +119,31 @@ svg {
     align-items: center; }
   .home__featured__image {
     width: 200px; }
-  .home__by-type__header {
+  .home__by-company__header {
     padding: 1rem 0;
     border-bottom: 1px solid #aaa; }
-  .home__by-type__types-list {
+  .home__by-company__ul {
+    display: flex;
+    justify-content: space-around;
+    align-content: row;
+    flex-wrap: wrap; }
+  .home__by-company__li {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center; }
+  .home__by-company__image {
+    width: 200px; }
+  .home__by-company__companys-list {
     display: flex;
     justify-content: space-around;
     align-content: row; }
-    .home__by-type__types-list__item {
+    .home__by-company__companys-list__item {
       font-weight: bold;
       font-size: 18px; }
-      .home__by-type__types-list__item:hover {
+      .home__by-company__companys-list__item:hover {
         cursor: pointer; }
-  .home__by-type__ul {
+  .home__by-company__ul {
     display: flex;
     justify-content: space-around;
     align-content: row; }

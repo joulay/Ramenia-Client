@@ -83,13 +83,31 @@
         }
     }
 
-    &__by-type {
+    &__by-company {
         &__header {
             padding: 1rem 0;
             border-bottom: 1px solid #aaa;
         }
 
-        &__types-list {
+        &__ul {
+            display: flex;
+            justify-content: space-around;
+            align-content: row;
+            flex-wrap: wrap;
+        }
+
+        &__li {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__image {
+            width: 200px;
+        }
+
+        &__companys-list {
             display: flex;
             justify-content: space-around;
             align-content: row;

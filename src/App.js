@@ -8,7 +8,7 @@ import Home from './components/home';
 import ProductPage from './components/product-page';
 import Admin from './components/admin';
 
-import {getRamenData, getTagData} from './actions/ramen';
+import {getRamenData, getTagData, getCompanyData} from './actions/ramen';
 
 export class App extends React.Component {
     
@@ -26,6 +26,7 @@ export class App extends React.Component {
     componentDidMount() {
         this.props.dispatch(getRamenData())
         this.props.dispatch(getTagData())
+        this.props.dispatch(getCompanyData())
     }
 
     componentWillUnmount() {
