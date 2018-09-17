@@ -7,6 +7,10 @@
 .pointer-cursor {
   cursor: pointer; }
 
+.item-list-button {
+  align-self: center;
+  font-size: 48px; }
+
 * {
   padding: 0;
   margin: 0;
@@ -105,48 +109,54 @@ svg {
         font-weight: bold;
         padding: 1rem;
         border-radius: 10px; }
-  .home__featured__header {
-    padding: 1rem 0;
-    border-bottom: 1px solid #aaa; }
-  .home__featured__ul {
-    display: flex;
-    justify-content: space-around;
-    align-content: row; }
-  .home__featured__li {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center; }
-  .home__featured__image {
-    width: 200px; }
-  .home__by-company__header {
-    padding: 1rem 0;
-    border-bottom: 1px solid #aaa; }
-  .home__by-company__ul {
-    display: flex;
-    justify-content: space-around;
-    align-content: row;
-    flex-wrap: wrap; }
-  .home__by-company__li {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center; }
-  .home__by-company__image {
-    width: 200px; }
-  .home__by-company__companys-list {
-    display: flex;
-    justify-content: space-around;
-    align-content: row; }
-    .home__by-company__companys-list__item {
-      font-weight: bold;
-      font-size: 18px; }
-      .home__by-company__companys-list__item:hover {
-        cursor: pointer; }
-  .home__by-company__ul {
-    display: flex;
-    justify-content: space-around;
-    align-content: row; }
+  .home__featured {
+    height: 375px; }
+    .home__featured__header {
+      padding: 1rem 0;
+      border-bottom: 1px solid #aaa; }
+    .home__featured__ul {
+      display: flex;
+      justify-content: space-between;
+      align-content: row; }
+    .home__featured__li {
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+      align-items: center; }
+    .home__featured__image {
+      width: 200px; }
+  .home__by-company {
+    min-height: 425px;
+    height: 375px; }
+    .home__by-company__header {
+      padding: 1rem 0;
+      border-bottom: 1px solid #aaa; }
+    .home__by-company__ul {
+      display: flex;
+      justify-content: space-between;
+      align-content: row;
+      flex-wrap: wrap;
+      width: 100%; }
+    .home__by-company__li {
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+      align-items: center; }
+    .home__by-company__image {
+      width: 200px; }
+    .home__by-company__companys-list {
+      display: flex;
+      justify-content: space-between;
+      align-content: row; }
+      .home__by-company__companys-list__item {
+        font-weight: bold;
+        font-size: 18px; }
+        .home__by-company__companys-list__item:hover {
+          cursor: pointer; }
+    .home__by-company__ul {
+      display: flex;
+      justify-content: space-between;
+      align-content: row; }
   .home__search-results__header {
     padding: 1rem 0;
     border-bottom: 1px solid #aaa; }
