@@ -11,6 +11,16 @@
   align-self: center;
   font-size: 48px; }
 
+.nav-div {
+  width: 15%;
+  position: fixed;
+  display: inline-block; }
+
+.main-div {
+  margin-left: 15%;
+  width: 85%;
+  display: inline-block; }
+
 * {
   padding: 0;
   margin: 0;
@@ -42,13 +52,6 @@ body {
   line-height: 1.7;
   color: #424949; }
 
-.app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; }
-  .app__content {
-    flex: 1 0 auto; }
-
 button {
   cursor: pointer; }
 
@@ -73,42 +76,14 @@ svg {
 
 .home {
   height: 0; }
-  .home__cover {
-    height: 418px;
-    background-image: url("https://cdn2.i-scmp.com/sites/default/files/styles/980x551/public/images/methode/2016/06/02/0de11d18-26eb-11e6-b3b6-bdf44ca17c9d_1280x720.jpg?itok=0UaisgLP");
-    background-repeat: no-repeat;
-    background-color: black;
-    background-position: center;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: flex-start; }
-    .home__cover__header {
-      margin: 1rem 0 0 1rem;
-      background-color: #fcc;
-      padding: 14px; }
-    .home__cover__search {
-      margin-top: 7rem;
-      padding: 1rem;
-      background-color: #338;
-      color: #fff;
-      font-weight: bold; }
-      .home__cover__search::placeholder {
-        color: #aaa;
-        font-style: italic;
-        font-weight: normal; }
-      .home__cover__search__button {
-        padding: 1rem; }
-    .home__cover__login {
-      margin: 1rem 1rem 0 0; }
-      .home__cover__login__content {
-        margin: 1rem;
-        background-color: #4a4;
-        color: #eee;
-        font-weight: bold;
-        padding: 1rem;
-        border-radius: 10px; }
+  .home__search-input {
+    margin: 20px 20px 0 20px;
+    padding: 5px;
+    background-color: #ddd;
+    border: 1px solid #777;
+    font-size: 18px; }
+  .home__advertisement {
+    margin: 20px 0 0 120px; }
   .home__featured {
     height: 375px; }
     .home__featured__header {
@@ -164,7 +139,9 @@ svg {
     display: flex;
     justify-content: space-around;
     align-content: row;
-    flex-wrap: wrap; }
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    max-height: 80vh; }
   .home__search-results__li {
     display: flex;
     justify-content: space-between;
@@ -323,3 +300,20 @@ svg {
   padding: 5px;
   background-color: red;
   color: white; }
+
+.nav {
+  height: 100vh;
+  background-color: #ffa;
+  border-right: 3px solid #bb9; }
+  .nav__logo {
+    width: 100%; }
+  .nav__ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    height: 80vh;
+    padding-bottom: 200px; }
+  .nav__li {
+    font-size: 24px;
+    font-weight: bold; }

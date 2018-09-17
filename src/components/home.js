@@ -140,7 +140,7 @@ class Home extends React.Component {
         } catch (e) {}
         
         let display = (
-            <div>
+            <div className="home">
                 <div className="home__featured container">
                     <h2 className="home__featured__header">Top Rated Ramen</h2>
                     <ul className="home__featured__ul">
@@ -224,14 +224,9 @@ class Home extends React.Component {
         }
         return (
             <section className="home">
-                <div className="home__cover">
-                    <h1 className="home__cover__header">Ramenia</h1>
-                    <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} placeholder="search" className="home__cover__search"></input>
-                    <button className="home__cover__login">
-                        <p className="home__cover__login__content">
-                            Login/Signup
-                        </p>
-                    </button>
+                <div className="home__head">
+                    <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} placeholder="search" className="home__search-input"></input>
+                    <img className="home__advertisement" src="http://jhs.gcs.k12.in.us/wp-content/uploads/sites/42/2015/08/768-x-90general.jpg"/>
                 </div>
                 {display}
             </section>
