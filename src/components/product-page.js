@@ -17,6 +17,7 @@ class ProductPage extends React.Component {
         super(props);
 
         this.state = {
+            ramenId: queryString.parse(this.props.location.search).ramenId,
             ramen: null,
             notFound: false,
             redirectCountDown: 10,
@@ -27,65 +28,45 @@ class ProductPage extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentWillUnmount() {
+        this.props.dispatch(selectRamen(null))
 
-        if (!this.props.selected) {
-            const values = queryString.parse(this.props.location.search);
-            try {
-                this.props.dispatch(selectRamen(values.ramenId))
-                setTimeout(() => {
-                    return fetch(`${API_BASE_URL}/ramen/${this.props.selected}`, {
-                        method: 'GET'
-                    })
-                    .then(res => res.json())
-                    .then(result => {
-                        try {
-                            let resp = result;
-                            let totalRatings = [];
-                            for (let j=0; j<result.ratings.length; j++) {
-                                totalRatings.push(result.ratings[j].overall);
-                            }
-                            resp.overallRating = String(Math.round((totalRatings.reduce((a,b) => a+b) / totalRatings.length) * 10) / 10);
-                            if (resp.overallRating.length === 1) {
-                                resp.overallRating = String(resp.overallRating) + '.0';
-                            }
-                            this.setState({ramen: resp})
-                            return resp;
-                        } catch (e) {
-                            let resp = result
-                            resp.overallRating = '0.0'
-                            this.setState({ramen: resp})
-                            return result;
-                        }
-                    })
-                    .catch(err => console.log(err))
-                }, 1000)
-            } catch(e) {
-                return <Redirect to='/' />
-            }
-        } else {
-            return fetch(`${API_BASE_URL}/ramen/${this.props.selected}`, {
+    }
+
+    componentDidMount() {
+        try {
+            this.props.dispatch(selectRamen(this.state.ramenId))
+            return fetch(`${API_BASE_URL}/ramen/${this.state.ramenId}`, {
                 method: 'GET'
             })
             .then(res => res.json())
             .then(result => {
-                let resp = result;
-                for (let i=0; i<result.length; i++) {
-                    let totalRatings = []
-                    for (let j=0; j<result[i].ratings.length; j++) {
-                        totalRatings.push(result[i].ratings[j].overall);
+                try {
+                    let resp = result;
+                    let totalRatings = [];
+                    for (let j=0; j<result.ratings.length; j++) {
+                        totalRatings.push(result.ratings[j].overall);
                     }
-                    resp[i].overallRating = totalRatings.reduce((a,b) => a+b) / totalRatings.length;
+                    resp.overallRating = String(Math.round((totalRatings.reduce((a,b) => a+b) / totalRatings.length) * 10) / 10);
+                    if (resp.overallRating.length === 1) {
+                        resp.overallRating = String(resp.overallRating) + '.0';
+                    }
+                    this.setState({ramen: resp})
+                    return resp;
+                } catch (e) {
+                    let resp = result
+                    resp.overallRating = '0.0'
+                    this.setState({ramen: resp})
+                    return result;
                 }
-                this.setState({ramen: resp})
-                return resp;
             })
             .catch(err => console.log(err))
+        } catch(e) {
+            return <Redirect to='/' />
         }
     }
 
     render() {
-        console.log(this.state)
         try {
             let starArray;
             let count = 0;
@@ -278,7 +259,10 @@ const mapStateToProps = state => ({
     hasAuthToken: state.auth.authToken !== null,
     currentUser: state.auth.currentUser,
     loggedIn: state.auth.currentUser !== null,
-    selected: state.selections.selected
+    selected: state.selections.selected,
+    ramen: state.ramen.data,
+    companyData: state.ramen.companyData,
+    tagData: state.ramen.tagData
 });
 
 export default withRouter(connect(mapStateToProps)(ProductPage));
