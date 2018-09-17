@@ -21,7 +21,9 @@ class Home extends React.Component {
             ramen: [],
             style: 'Spicy',
             search: '',
-            ramenByCompany: 'NongShim'
+            ramenByCompany: 'NongShim',
+            topRatedTab: 0,
+            ramenByCompanyTab: 0
         }
     }
 
@@ -54,7 +56,7 @@ class Home extends React.Component {
         
         const topRated = this.props.ramen.filter((item) => item.overallRating > 0)
         .sort((a, b) => parseInt(b.overallRating) - parseInt(a.overallRating))
-        .slice(0,5)
+        .slice(0 + this.state.topRatedTab, 5 + this.state.topRatedTab)
         .map((item) => {
             let redirectString = '/product-page' + '?ramenId=' + item.id;
             const rating = this.countStars(item.overallRating);
@@ -87,8 +89,24 @@ class Home extends React.Component {
         let getSelectedCompanyInfo = this.props.companyData.filter((company) => company.name === this.state.ramenByCompany)[0];
         let companyRamenList;
         try {
-            companyRamenList = getSelectedCompanyInfo.ramen.sort((a, b) => parseInt(b.overallRating) - parseInt(a.overallRating))
-            .slice(0,5)
+            companyRamenList = getSelectedCompanyInfo.ramen
+            .slice(0 + this.state.ramenByCompanyTab, 5 + this.state.ramenByCompanyTab)
+            .map((item) => {
+                let overallRating = 0;
+                for (let i=0; i<item.ratings.length; i++) {
+                    overallRating += parseInt(item.ratings[i].overall);
+                }
+                console.log(overallRating, item.ratings.length)
+                if (overallRating > 0) {
+                    overallRating = overallRating / item.ratings.length;
+                }
+                let newItem = item;
+                newItem.overallRating = overallRating; 
+                return newItem;
+            })
+            .sort((a, b) => {
+                return b.overallRating - a.overallRating;
+              })
             .map((item) => {
                 let redirectString = '/product-page' + '?ramenId=' + item.id;
                 const rating = this.countStars(item.overallRating);
@@ -106,8 +124,10 @@ class Home extends React.Component {
                     itemName += "...";
                 }
                 return (
-                    <li className="home__by-company__li"
+                    <li 
+                    className="home__by-company__li"
                     // onClick={() => this.selectProduct(item.id)} 
+                    key={item.id}
                     className="home__by-company__li">
                         <a href={redirectString}><img src={item.image} className="home__by-company__image"/></a>
                         <span className="home__by-company__details">
@@ -117,6 +137,8 @@ class Home extends React.Component {
                     </li>
                 )
             })
+
+
         } catch (e) {}
         
         let display = (
@@ -124,7 +146,17 @@ class Home extends React.Component {
                 <div className="home__featured container">
                     <h2 className="home__featured__header">Top Rated Ramen</h2>
                     <ul className="home__featured__ul">
+                        <button onClick={() => {
+                            if (this.state.topRatedTab > 0) {
+                                this.setState({topRatedTab: this.state.topRatedTab - 1})
+                            }
+                        }} className="item-list-button">&#8249;</button>
                         {topRated}
+                        <button onClick={() => {
+                            if (topRated.length === 5) {
+                                this.setState({topRatedTab: this.state.topRatedTab + 1})
+                            }
+                        }} className="item-list-button">&#8250;</button>
                     </ul>
                 </div>
                 <div className="home__by-company container">
@@ -137,7 +169,17 @@ class Home extends React.Component {
                         <li className="home__by-company__companys-list__item home__by-company__indonesian" onClick={() => this.setState({ramenByCompany: 'Ottogi'})}>Ottogi</li>
                     </ul>
                     <ul className="home__by-company__ul">
+                        <button onClick={() => {
+                            if (this.state.ramenByCompanyTab > 0) {
+                                this.setState({ramenByCompanyTab: this.state.ramenByCompanyTab - 1})
+                            }
+                        }} className="item-list-button">&#8249;</button>
                         {companyRamenList}
+                        <button onClick={() => {
+                            if (companyRamenList.length === 5) {
+                                this.setState({ramenByCompanyTab: this.state.ramenByCompanyTab + 1})
+                            }
+                        }} className="item-list-button">&#8250;</button>
                     </ul>
                 </div>
             </div>

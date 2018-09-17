@@ -64,7 +64,7 @@ export const getCompanyData = () => (dispatch) => {
     .then(res => res.json())
     .then(result => {
         dispatch(saveCompanyData(result))
-        return result;
+        return result
     })
     .catch(err => console.log(err))
 }
