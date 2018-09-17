@@ -130,19 +130,21 @@ class ProductPage extends React.Component {
                 )
             })
             queryString.parse(`ramenId=${this.props.selected}`)
-    
+            if (this.state.ramen.overallRating) {
             starArray = [];
             count = this.state.ramen.overallRating;
-            while (starArray.length < 5) {
-                if (count >= 1) {
-                    starArray.push({star: 'full', key: count});
-                } else if (count > 0) {
-                    starArray.push({star: 'half', key: count});
-                } else {
-                    starArray.push({star: 'empty', key: count});
+                while (starArray.length < 5) {
+                    if (count >= 1) {
+                        starArray.push({star: 'full', key: String(count)});
+                    } else if (count > 0) {
+                        starArray.push({star: 'half', key: String(count)});
+                    } else {
+                        starArray.push({star: 'empty', key: String(count)});
+                    }
+                    count--
                 }
-                count--
             }
+
             count = 0;
             const stars = starArray.map((star) => {
                 count++;

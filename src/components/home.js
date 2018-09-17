@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter, Redirect } from 'react-router-dom';
+import { Route, Link, withRouter, Redirect } from 'react-router-dom';
 
 import { normalizeResponseErrors } from '../actions/utils';
 import { API_BASE_URL } from '../config';
@@ -77,7 +77,7 @@ class Home extends React.Component {
                     id={item.overallRating}
                 // onClick={() => this.selectProduct(item.id)} 
                 className="home__featured__li">
-                    <a href={redirectString}><img src={item.image} className="home__featured__image"/></a>
+                    <Link to={redirectString}><img src={item.image} className="home__featured__image"/></Link>
                     <span className="home__featured__details">
                         <p className="home__featured__name">{itemName}</p>
                         <p className="home__featured__rating">{stars}</p>
@@ -127,7 +127,7 @@ class Home extends React.Component {
                     // onClick={() => this.selectProduct(item.id)} 
                     key={item.id}
                     className="home__by-company__li">
-                        <a href={redirectString}><img src={item.image} className="home__by-company__image"/></a>
+                        <Link to={redirectString}><img src={item.image} className="home__by-company__image"/></Link>
                         <span className="home__by-company__details">
                             <p className="home__by-company__name">{itemName}</p>
                             <p className="home__by-company__rating">{stars}</p>
@@ -204,7 +204,7 @@ class Home extends React.Component {
                     <li key={item.name} 
                     // onClick={() => this.selectProduct(item.id)} 
                     className="home__search-results__li">
-                        <a href={redirectString}><img src={item.image} className="home__search-results__image"/></a>
+                        <Link to={redirectString}><img src={item.image} className="home__search-results__image"/></Link>
                         <span className="home__search-results__details">
                             <p className="home__search-results__name">{itemName}</p>
                             <p className="home__search-results__rating">{stars}</p>
