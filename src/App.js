@@ -7,6 +7,7 @@ import { refreshAuthToken } from './actions/auth';
 import Home from './components/home';
 import ProductPage from './components/product-page';
 import Admin from './components/admin';
+import Nav from'./components/nav';
 
 import {getRamenData, getTagData, getCompanyData} from './actions/ramen';
 
@@ -51,10 +52,14 @@ export class App extends React.Component {
     render() {
         return (
             <main className="app">
-                {/* <HeaderBar /> */}
-                <Route exact path="/" component={Home} />
-                <Route exact path="/product-page" component={ProductPage} />
-                <Route exact path="/admin" component={Admin}/>
+                <div className="nav-div">
+                    <Nav />
+                </div>
+                <div className="main-div">
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/product-page" component={ProductPage} />
+                    <Route exact path="/admin" component={Admin}/>
+                </div>
             </main>
             
         );

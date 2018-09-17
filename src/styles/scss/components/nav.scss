@@ -1,0 +1,31 @@
+.nav {
+    height: 100vh;
+    background-color: #ffa;
+    border-right: 3px solid #bb9;
+
+    &__logo {
+        width: 100%;
+    }
+
+    &__ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        height: 80vh;
+        padding-bottom: 200px;
+    }
+
+    &__li {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    &__a {
+        color: #333;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
