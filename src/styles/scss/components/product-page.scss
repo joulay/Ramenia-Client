@@ -1,5 +1,11 @@
 .product-page {
 
+    &__ramen-name {
+        margin: 50px 0 0 50px;
+        font-size: 48px;
+        font-weight: bold;
+    }
+
     &__main {
         margin-top: 10rem;
         text-align: center;
