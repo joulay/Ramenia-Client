@@ -1,17 +1,76 @@
 .home {
     height: 0;
 
+    &__head {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 10vh;
+    }
+
+    &__search-span {
+        margin: auto 0;
+    }
+
     &__search-input {
-        margin: 20px 20px 0 20px;
+        align-self: center;
         padding: 5px;
         background-color: #ddd;
         border: 1px solid #777;
         font-size: 18px;
+        margin: 0 0 0 100px;
+
+        &__label {
+            margin: 0 20px;
+            font-size: 18px;
+            padding: 5px;
+
+            &:hover {
+                cursor: pointer;
+                color: orange;
+            }
+        }
+        
+        &__checkbox {
+            display: none;
+        }
+
+        &__checkbox__tags:not(:checked) ~ &__label__tags, &__checkbox__name:not(:checked) ~ &__label__name, &__checkbox__company:not(:checked) ~ &__label__company {
+        
+        }
+
+        &__checkbox__tags:checked ~ &__label__tags , &__checkbox__name:checked ~ &__label__name, &__checkbox__company:checked ~ &__label__company {
+            border: 5px solid orange;
+            border-radius: 10px;
+        }
+
+
+    }
+
+    &__search-tags-input {
+
+    }
+
+    &__search-tags-ul {
+        border: 1px solid #777;
+        font-size: 18px;
+        margin: 0 0 0 100px;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        background-color: white;
+    }
+
+    &__search-tags-li {
+
+        &:hover {
+            background-color: #aaa;
+        }
     }
 
     &__advertisement {
-        margin: 20px 0 0 120px;
-
+        align-self: center;
+        margin: 20px 20px -20px 0;
     }
 
     &__featured {

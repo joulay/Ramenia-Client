@@ -76,14 +76,45 @@ svg {
 
 .home {
   height: 0; }
+  .home__head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10vh; }
+  .home__search-span {
+    margin: auto 0; }
   .home__search-input {
-    margin: 20px 20px 0 20px;
+    align-self: center;
     padding: 5px;
     background-color: #ddd;
     border: 1px solid #777;
-    font-size: 18px; }
+    font-size: 18px;
+    margin: 0 0 0 100px; }
+    .home__search-input__label {
+      margin: 0 20px;
+      font-size: 18px;
+      padding: 5px; }
+      .home__search-input__label:hover {
+        cursor: pointer;
+        color: orange; }
+    .home__search-input__checkbox {
+      display: none; }
+    .home__search-input__checkbox__tags:checked ~ .home__search-input__label__tags, .home__search-input__checkbox__name:checked ~ .home__search-input__label__name, .home__search-input__checkbox__company:checked ~ .home__search-input__label__company {
+      border: 5px solid orange;
+      border-radius: 10px; }
+  .home__search-tags-ul {
+    border: 1px solid #777;
+    font-size: 18px;
+    margin: 0 0 0 100px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: white; }
+  .home__search-tags-li:hover {
+    background-color: #aaa; }
   .home__advertisement {
-    margin: 20px 0 0 120px; }
+    align-self: center;
+    margin: 20px 20px -20px 0; }
   .home__featured {
     height: 375px; }
     .home__featured__header {
@@ -317,3 +348,7 @@ svg {
   .nav__li {
     font-size: 24px;
     font-weight: bold; }
+  .nav__a {
+    color: #333; }
+    .nav__a:hover {
+      text-decoration: none; }

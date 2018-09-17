@@ -21,7 +21,8 @@ class Home extends React.Component {
             search: '',
             ramenByCompany: 'NongShim',
             topRatedTab: 0,
-            ramenByCompanyTab: 0
+            ramenByCompanyTab: 0,
+            tags: []
         }
     }
 
@@ -94,7 +95,6 @@ class Home extends React.Component {
                 for (let i=0; i<item.ratings.length; i++) {
                     overallRating += parseInt(item.ratings[i].overall);
                 }
-                console.log(overallRating, item.ratings.length)
                 if (overallRating > 0) {
                     overallRating = overallRating / item.ratings.length;
                 }
@@ -222,10 +222,49 @@ class Home extends React.Component {
                 </div>
             )
         }
+
+        let tagsSearchResults;
+        let showTags;
+        try {
+            tagsSearchResults = this.props.tagData.map((tag) => {
+                if (this.state.searchTags && tag.name.toLowerCase().includes(this.state.searchTags.toLowerCase())) {
+                    return (
+                        <li 
+                        value={tag.id}
+                        onClick={(event) => {
+                            let tags = this.state.tags;
+                            tags.push(tag);
+                            this.setState({searchTags: '', tags})
+                        }} className="home__search-tags-li" key={tag.id}>{tag.name}</li>
+                    )
+                }
+            });
+            showTags = this.state.tags.map((tag) => {
+                return (
+                    <li key={tag.id} value={tag.id} className="head__tags__li">
+                        {tag.name}
+                    </li>
+                )
+            })
+        } catch (e) {}
+
         return (
             <section className="home">
                 <div className="home__head">
-                    <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} placeholder="search" className="home__search-input"></input>
+                    <span className="home__search-span">
+                        <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} placeholder="search" className="home__search-input"></input>
+                        <ul className="home__search-tags-ul">
+                            <input onChange={(event) => this.setState({searchTags: event.target.value})} placeholder="tags" className="home__search-tags-input"/>
+                            {tagsSearchResults}
+                        </ul>
+                        {showTags}
+                        {/* <input className="home__search-input__checkbox home__search-input__checkbox__tags" id="tags" type="checkbox" />
+                        <label className="home__search-input__label home__search-input__label__tags" for="tags">Tags</label>
+                        <input className="home__search-input__checkbox home__search-input__checkbox__name" id="name" type="checkbox" />
+                        <label className="home__search-input__label home__search-input__label__name" for="name">Name</label>
+                        <input className="home__search-input__checkbox home__search-input__checkbox__company" id="company" type="checkbox" />
+                        <label className="home__search-input__label home__search-input__label__company" for="company">Company</label> */}
+                    </span>
                     <img className="home__advertisement" src="http://jhs.gcs.k12.in.us/wp-content/uploads/sites/42/2015/08/768-x-90general.jpg"/>
                 </div>
                 {display}
@@ -241,7 +280,8 @@ const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null,
     selected: state.selections.selected,
     ramen: state.ramen.data,
-    companyData: state.ramen.companyData
+    companyData: state.ramen.companyData,
+    tagData: state.ramen.tagData
 });
 
 // Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking

@@ -19,22 +19,22 @@ class ProductPage extends React.Component {
         super(props);
 
         this.state = {
-
         }
     }
 
 
 
     render() {
+
         return (
             <nav className="nav">
                 <img className="nav__logo" src={ramenCollective}/>
                 <ul className="nav__ul">
-                    <li className="nav__li"> HOME </li>
-                    <li className="nav__li"> LIKED </li>
-                    <li className="nav__li"> FORUM </li>
-                    <li className="nav__li"> LOG IN </li>
-                    <li className="nav__li"> SIGN UP </li>
+                    <li className="nav__li"> <a className="nav__a" href="/">HOME</a> </li>
+                    <li className="nav__li"> <a className="nav__a" href="/liked">LIKED</a> </li>
+                    <li className="nav__li"> <a className="nav__a" href="/forum">FORUM</a> </li>
+                    <li className="nav__li"> <a className="nav__a" href="/login">LOG IN</a> </li>
+                    <li className="nav__li"> <a className="nav__a" href="/signup">SIGN UP</a> </li>
                 </ul>
             </nav>
         )
