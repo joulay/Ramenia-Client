@@ -12,6 +12,12 @@ export const saveTagData = (data) => ({
     data: data
 })
 
+export const GET_COMPANY_DATA = 'GET_COMPANY_DATA';
+export const saveCompanyData = (data) => ({
+    type: GET_COMPANY_DATA,
+    data: data
+})
+
 export const getRamenData = () => (dispatch) => {
 
     return fetch(`${API_BASE_URL}/ramen`, {
@@ -50,6 +56,18 @@ export const getTagData = () => (dispatch) => {
     .catch(err => console.log(err))
 }
 
+export const getCompanyData = () => (dispatch) => {
+
+    return fetch(`${API_BASE_URL}/company`, {
+        method: 'GET'
+    })
+    .then(res => res.json())
+    .then(result => {
+        dispatch(saveCompanyData(result))
+        return result;
+    })
+    .catch(err => console.log(err))
+}
 
 export const submitRamenReview = (ramenId, postBody) => (dispatch) => {
 

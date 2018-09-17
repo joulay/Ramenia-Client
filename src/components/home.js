@@ -18,7 +18,8 @@ class Home extends React.Component {
         this.state = {
             ramen: [],
             style: 'Spicy',
-            search: ''
+            search: '',
+            ramenByCompany: 'NongShim'
         }
     }
 
@@ -64,6 +65,10 @@ class Home extends React.Component {
                     return <img key={star.key} src={emptyStar}/>
                 }
             })
+            let itemName = item.name.slice(0, 22);
+            if (itemName.length >= 22) {
+                itemName += "...";
+            }
             return (
                 <li key={item.name} 
                     id={item.overallRating}
@@ -71,14 +76,47 @@ class Home extends React.Component {
                 className="home__featured__li">
                     <a href={redirectString}><img src={item.image} className="home__featured__image"/></a>
                     <span className="home__featured__details">
-                        <p className="home__featured__name">{item.name}</p>
+                        <p className="home__featured__name">{itemName}</p>
                         <p className="home__featured__rating">{stars}</p>
                     </span>
                 </li>)
         })
-        
-        console.log(topRated);
 
+        let getSelectedCompanyInfo = this.props.companyData.filter((company) => company.name === this.state.ramenByCompany)[0];
+        let companyRamenList;
+        try {
+            companyRamenList = getSelectedCompanyInfo.ramen.sort((a, b) => parseInt(b.overallRating) - parseInt(a.overallRating))
+            .slice(0,5)
+            .map((item) => {
+                let redirectString = '/product-page' + '?ramenId=' + item.id;
+                const rating = this.countStars(item.overallRating);
+                const stars = rating.map((star) => {
+                    if (star.star === 'full') {
+                        return <img key={star.key} src={fullStar}/>
+                    } else if (star.star === 'half') {
+                        return <img key={star.key} src={halfStar}/>
+                    } else {
+                        return <img key={star.key} src={emptyStar}/>
+                    }
+                })
+                let itemName = item.name.slice(0, 22);
+                if (itemName.length >= 22) {
+                    itemName += "...";
+                }
+                return (
+                    <li className="home__by-company__li"
+                    // onClick={() => this.selectProduct(item.id)} 
+                    className="home__by-company__li">
+                        <a href={redirectString}><img src={item.image} className="home__by-company__image"/></a>
+                        <span className="home__by-company__details">
+                            <p className="home__by-company__name">{itemName}</p>
+                            <p className="home__by-company__rating">{stars}</p>
+                        </span>
+                    </li>
+                )
+            })
+        } catch (e) {}
+        
         let display = (
             <div>
                 <div className="home__featured container">
@@ -87,18 +125,17 @@ class Home extends React.Component {
                         {topRated}
                     </ul>
                 </div>
-                <div className="home__by-type container">
-                <h2 className="home__by-type__header">Top Ramen by Style</h2>
-                    <ul className="home__by-type__types-list">
-                        <li className="home__by-type__types-list__item home__by-type__spicy" onClick={() => this.setState({style: 'Spicy'})}>Spicy</li>
-                        <li className="home__by-type__types-list__item home__by-type__korean" onClick={() => this.setState({style: 'Korean'})}>Korean</li>
-                        <li className="home__by-type__types-list__item home__by-type__chinese" onClick={() => this.setState({style: 'Chinese'})}>Chinese</li>
-                        <li className="home__by-type__types-list__item home__by-type__japanese" onClick={() => this.setState({style: 'Japanese'})}>Japanese</li>
-                        <li className="home__by-type__types-list__item home__by-type__indonesian" onClick={() => this.setState({style: 'Indonesian'})}>Indonesian</li>
-                        <li className="home__by-type__types-list__item home__by-type__soupless" onClick={() => this.setState({style: 'Soupless'})}>Soupless</li>
+                <div className="home__by-company container">
+                <h2 className="home__by-company__header">Top Ramen by Company</h2>
+                    <ul className="home__by-company__companys-list">
+                        <li className="home__by-company__companys-list__item home__by-company__spicy" onClick={() => this.setState({ramenByCompany: 'NongShim'})}>NongShim</li>
+                        <li className="home__by-company__companys-list__item home__by-company__korean" onClick={() => this.setState({ramenByCompany: 'Maruchan'})}>Maruchan</li>
+                        <li className="home__by-company__companys-list__item home__by-company__chinese" onClick={() => this.setState({ramenByCompany: 'Sanyo Foods'})}>Sanyo Foods</li>
+                        <li className="home__by-company__companys-list__item home__by-company__japanese" onClick={() => this.setState({ramenByCompany: 'Paldo'})}>Paldo</li>
+                        <li className="home__by-company__companys-list__item home__by-company__indonesian" onClick={() => this.setState({ramenByCompany: 'Ottogi'})}>Ottogi</li>
                     </ul>
-                    <ul className="home__by-type__ul">
-
+                    <ul className="home__by-company__ul">
+                        {companyRamenList}
                     </ul>
                 </div>
             </div>
@@ -117,13 +154,17 @@ class Home extends React.Component {
                             return <img key={star.key} src={emptyStar}/>
                         }
                     })
+                    let itemName = item.name.slice(0, 22);
+                    if (itemName.length >= 22) {
+                        itemName += "...";
+                    }
                     return (
                     <li key={item.name} 
                     // onClick={() => this.selectProduct(item.id)} 
                     className="home__search-results__li">
                         <a href={redirectString}><img src={item.image} className="home__search-results__image"/></a>
                         <span className="home__search-results__details">
-                            <p className="home__search-results__name">{item.name}</p>
+                            <p className="home__search-results__name">{itemName}</p>
                             <p className="home__search-results__rating">{stars}</p>
                         </span>
                     </li>
@@ -162,7 +203,8 @@ const mapStateToProps = state => ({
     currentUser: state.auth.currentUser,
     loggedIn: state.auth.currentUser !== null,
     selected: state.selections.selected,
-    ramen: state.ramen.data
+    ramen: state.ramen.data,
+    companyData: state.ramen.companyData
 });
 
 // Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
