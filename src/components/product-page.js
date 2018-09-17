@@ -244,6 +244,7 @@ class ProductPage extends React.Component {
 
             return (
                 <section className="product-page">
+                    <h1 className="product-page__ramen-name">{this.state.ramen.name}</h1>
                     <div className="product-page__main container">
                         <div className="product-page__main__left">
                             <img className="product-page__main__favorite" src="http://icons.iconarchive.com/icons/alecive/flatwoken/256/Apps-Favorite-Heart-icon.png" />

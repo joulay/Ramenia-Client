@@ -184,6 +184,11 @@ svg {
     padding: 5px;
     font-size: 18px; }
 
+.product-page__ramen-name {
+  margin: 50px 0 0 50px;
+  font-size: 48px;
+  font-weight: bold; }
+
 .product-page__main {
   margin-top: 10rem;
   text-align: center;
