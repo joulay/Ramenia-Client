@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter, Redirect } from 'react-router-dom';
+import { Route, Link, withRouter, Redirect } from 'react-router-dom';
 
 import { normalizeResponseErrors } from '../actions/utils';
 import { API_BASE_URL } from '../config';
@@ -53,8 +53,6 @@ class Home extends React.Component {
     }
 
     render() {
-        console.log(this.state)
-        
         const topRated = this.props.ramen.filter((item) => item.overallRating > 0)
         .sort((a, b) => parseInt(b.overallRating) - parseInt(a.overallRating))
         .slice(0 + this.state.topRatedTab, 5 + this.state.topRatedTab)
@@ -79,7 +77,7 @@ class Home extends React.Component {
                     id={item.overallRating}
                 // onClick={() => this.selectProduct(item.id)} 
                 className="home__featured__li">
-                    <a href={redirectString}><img src={item.image} className="home__featured__image"/></a>
+                    <Link to={redirectString}><img src={item.image} className="home__featured__image"/></Link>
                     <span className="home__featured__details">
                         <p className="home__featured__name">{itemName}</p>
                         <p className="home__featured__rating">{stars}</p>
@@ -129,7 +127,7 @@ class Home extends React.Component {
                     // onClick={() => this.selectProduct(item.id)} 
                     key={item.id}
                     className="home__by-company__li">
-                        <a href={redirectString}><img src={item.image} className="home__by-company__image"/></a>
+                        <Link to={redirectString}><img src={item.image} className="home__by-company__image"/></Link>
                         <span className="home__by-company__details">
                             <p className="home__by-company__name">{itemName}</p>
                             <p className="home__by-company__rating">{stars}</p>
@@ -185,8 +183,26 @@ class Home extends React.Component {
             </div>
         )
         if (this.state.search.length > 0) {
-            const results = this.props.ramen.map((item) => {
-                if (item.name.toLowerCase().includes(this.state.search)) {
+            const results = this.props.ramen
+            .filter((item) => {
+                if (!this.state.tags) {
+                    return item;
+                }
+                if (item.tags.length > 0) {
+                    let check = false;
+                    let tagNames = item.tags.map((tag) => tag.name);
+                    this.state.tags.forEach((tag) => {
+                        if (tagNames.includes(tag.name)) {
+                            check = true;
+                        }
+                    })
+                    if (check === true) {
+                        return item;
+                    }
+                }
+            })
+            .map((item) => {
+                if (item.name.toLowerCase().includes(this.state.search) || item.companyId.name.toLowerCase().includes(this.state.search)) {
                     let redirectString = '/product-page' + '?ramenId=' + item.id;
                     const rating = this.countStars(item.overallRating);
                     const stars = rating.map((star) => {
@@ -206,7 +222,7 @@ class Home extends React.Component {
                     <li key={item.name} 
                     // onClick={() => this.selectProduct(item.id)} 
                     className="home__search-results__li">
-                        <a href={redirectString}><img src={item.image} className="home__search-results__image"/></a>
+                        <Link to={redirectString}><img src={item.image} className="home__search-results__image"/></Link>
                         <span className="home__search-results__details">
                             <p className="home__search-results__name">{itemName}</p>
                             <p className="home__search-results__rating">{stars}</p>
@@ -244,7 +260,10 @@ class Home extends React.Component {
             showTags = this.state.tags.map((tag) => {
                 return (
                     <li key={tag.id} value={tag.id} className="head__tags__li">
-                        {tag.name}
+                        {tag.name} <a className="head__tags__li__remove" onClick={() => {
+                            const tagRemoval = this.state.tags.filter((item) => item.name !== tag.name);
+                            this.setState({tags: tagRemoval})
+                        }}>X</a>
                     </li>
                 )
             })
