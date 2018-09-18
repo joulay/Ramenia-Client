@@ -29,11 +29,11 @@ class ProductPage extends React.Component {
             <nav className="nav">
                 <img className="nav__logo" src={ramenCollective}/>
                 <ul className="nav__ul">
-                    <li className="nav__li"> <i class="fas fa-home"></i><Link className="nav__a" to="/"> HOME</Link> </li>
-                    <li className="nav__li"> <i class="far fa-heart"></i><Link className="nav__a" to="/liked"> LIKED</Link> </li>
+                    <li className="nav__li"> <Link className="nav__a" to="/"><i class="fas fa-home"></i> HOME</Link> </li>
+                    <li className="nav__li"> <Link className="nav__a" to="/liked"><i class="far fa-heart"></i> LIKED</Link> </li>
                     {/* <li className="nav__li"> <Link className="nav__a" to="/forum">FORUM</Link> </li> */}
-                    <li className="nav__li"> <i class="fas fa-sign-in-alt"></i> <Link className="nav__a" to="/login"> LOG IN</Link> </li>
-                    <li className="nav__li"> <i class="fas fa-user-plus"></i><Link className="nav__a" to="/signup"> SIGN UP</Link> </li>
+                    <li className="nav__li">  <Link className="nav__a" to="/login"><i class="fas fa-sign-in-alt"></i> LOG IN</Link> </li>
+                    <li className="nav__li"> <Link className="nav__a" to="/signup"><i class="fas fa-user-plus"></i> SIGN UP</Link> </li>
                 </ul>
             </nav>
         )

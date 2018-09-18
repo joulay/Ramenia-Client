@@ -285,7 +285,7 @@ class Home extends React.Component {
                         <input className="home__search-input__checkbox home__search-input__checkbox__company" id="company" type="checkbox" />
                         <label className="home__search-input__label home__search-input__label__company" for="company">Company</label> */}
                     </span>
-                    <img className="home__advertisement" src="http://jhs.gcs.k12.in.us/wp-content/uploads/sites/42/2015/08/768-x-90general.jpg"/>
+                    {/* <img className="home__advertisement" src="http://jhs.gcs.k12.in.us/wp-content/uploads/sites/42/2015/08/768-x-90general.jpg"/> */}
                 </div>
                 {display}
             </section>

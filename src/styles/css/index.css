@@ -47,7 +47,7 @@ html {
 body {
   box-sizing: border-box;
   padding: 0rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: 400;
   line-height: 1.7;
   color: #424949; }
@@ -124,8 +124,8 @@ svg {
     .home__featured__header {
       color: #ED5C66;
       padding: 1rem 0;
-      border-bottom: 1px solid #DCE5F6;
-      font-family: "Lato"; }
+      border-bottom: 2px solid #DCE5F6;
+      font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif; }
     .home__featured__ul {
       display: flex;
       justify-content: space-between;
@@ -142,7 +142,8 @@ svg {
     height: 375px; }
     .home__by-company__header {
       padding: 1rem 0;
-      border-bottom: 1px solid #aaa; }
+      color: #ED5C66;
+      border-bottom: 2px solid #DCE5F6; }
     .home__by-company__ul {
       display: flex;
       justify-content: space-between;
@@ -354,8 +355,7 @@ svg {
 
 .nav {
   height: 100vh;
-  background-color: #FBFCFC;
-  border-right: 6px solid #DCE5F6; }
+  background-color: #ECF0F1; }
   .nav__logo {
     width: 100%; }
   .nav__ul {
