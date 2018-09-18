@@ -137,18 +137,27 @@ class ProductPage extends React.Component {
                     return <img id={count} key={star.key} src={emptyStar}/>
                 }
             })
-
+            const tags = this.state.ramen.tags.map((tag) => {
+                return (
+                    <li key={tag.id}>
+                        #{tag.name}
+                    </li>
+                )
+            })
             let reviewForm = 
             (
-            <div className="product-page__main__right">            
-                <p className="product-page__main__number-rating">{this.state.ramen.overallRating}</p>
-                <span className="product-page__main__wrap">
-                    <span className="product-page__main__total-rating">
-                        {stars}
+            <div className="product-page__main__right">
+                <span className="product-page__main__right__top">            
+                    <p className="product-page__main__number-rating">{this.state.ramen.overallRating}</p>
+                    <span className="product-page__main__wrap">
+                        <span className="product-page__main__total-rating">
+                            {stars}
+                        </span>
+                        <p>{this.state.ramen.ratings.length} Reviews</p>
+                        <button onClick={() => this.setState({writeReview: true})} className="product-page__main__review-button" >Write a review!</button>
                     </span>
-                    <p>{this.state.ramen.ratings.length} Reviews</p>
-                    <button onClick={() => this.setState({writeReview: true})} className="product-page__main__review-button" >Write a review!</button>
                 </span>
+                <span className="product-page__main__right__bottom">{tags}</span>
             </div>
             );
             if (this.state.writeReview) {
