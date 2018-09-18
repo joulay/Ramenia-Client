@@ -3,12 +3,16 @@ import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import { loadAuthToken } from './local-storage';
 import authReducer from './reducers/auth';
+import selectionsReducer from './reducers/selections';
+import ramenReducer from './reducers/ramen';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 
 const store = createStore(
     combineReducers({
         form: formReducer,
         auth: authReducer,
+        selections: selectionsReducer,
+        ramen: ramenReducer
     }),
     applyMiddleware(thunk)
 );

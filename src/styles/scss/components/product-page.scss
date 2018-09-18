@@ -1,5 +1,11 @@
 .product-page {
 
+    &__ramen-name {
+        margin: 50px 0 0 50px;
+        font-size: 48px;
+        font-weight: bold;
+    }
+
     &__main {
         margin-top: 10rem;
         text-align: center;
@@ -15,10 +21,13 @@
 
         &__right {
             width: 47.5%;
+            padding: 10px;
             display: flex;
             justify-content: space-around;
             flex-direction: row;
             align-items: center;
+            background-color: #bbb;
+            margin: 0; 
         }
 
         &__favorite {
@@ -28,7 +37,7 @@
 
         &__image {
             align-self: center;
-            width: 200px;
+            width: 300px;
         }
 
         &__user-rating {
@@ -36,11 +45,53 @@
         }
 
         &__number-rating {
-            font-size: 48px;
+            font-size: 96px;
         }
 
         &__total-rating {
 
         }
+
+        &__review-button {
+            padding: 5px;
+        }
+    }
+
+    &__review {
+        width: 47.5%;
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        align-items: center;
+        background-color: #bbb;
+        margin: 0; 
+
+        &__form {
+            float:right;
+            margin: 0 auto;
+        }
+
+        &__rating {
+
+        }
+
+        &__text {
+            font-size: 16px;
+            display: block;
+        }
+
+        &__go-back {
+            cursor: pointer;
+            margin-right: 200px;
+        }
+
+        &__button {
+            padding: 5px;
+        }
+    }
+
+    &__reviews {
+        margin-top: 50px;
     }
 }

@@ -1,0 +1,27 @@
+.loading {
+    position: fixed;
+    left: 60vh;
+    top: 40vh;
+    font-size: 48px;
+}
+
+.pointer-cursor {
+    cursor: pointer;
+}
+
+.item-list-button {
+    align-self: center;
+    font-size: 48px;
+}
+
+.nav-div {
+    width: 15%;
+    position: fixed;
+    display: inline-block;
+}
+
+.main-div {
+    margin-left: 15%;
+    width: 85%;
+    display: inline-block;
+}
