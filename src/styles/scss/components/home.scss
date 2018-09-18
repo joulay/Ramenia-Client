@@ -12,13 +12,22 @@
         margin: auto 0;
     }
 
-    &__search-input {
-        align-self: center;
-        padding: 5px;
-        background-color: #ddd;
-        border: 1px solid #777;
-        font-size: 18px;
-        margin: 0 0 0 100px;
+        &__search {
+            margin-top: 7rem;
+
+            &__input {
+                padding: 1rem;
+                background-color: #fff;
+                color: #fff;
+                font-weight: bold;                    
+                
+                &::placeholder {
+                    color: #aaa;
+                    font-style: italic;     
+                    font-weight: normal;                    
+                    
+                }
+            }
 
         &__label {
             margin: 0 20px;
@@ -78,8 +87,10 @@
         height: 375px;
 
         &__header {
+            color: $color-red-one;
             padding: 1rem 0;
-            border-bottom: 1px solid #aaa;
+            border-bottom: 2px solid $color-blue-light;
+            font-weight: 1000;
         }
 
         &__ul {
@@ -102,6 +113,14 @@
         &__details {
 
         }
+
+        &__name {
+            color: $color-blue-bright;
+            text-align: center;
+            font-weight: bold;
+        }
+
+
     }
 
     &__by-company {
@@ -110,7 +129,9 @@
 
         &__header {
             padding: 1rem 0;
-            border-bottom: 1px solid #aaa;
+            color: $color-red-one;
+            border-bottom: 2px solid $color-blue-light;
+            font-weight: 1000;
         }
 
         &__ul {
@@ -139,7 +160,7 @@
             align-content: row;
             
             &__item {
-                font-weight: bold;
+                font-weight: 1000;
                 font-size: 18px;
 
                 &:hover {
@@ -152,6 +173,12 @@
             display: flex;
             justify-content: space-between;
             align-content: row;
+        }
+
+        &__name {
+            color: $color-blue-bright;
+            text-align: center;
+            font-weight: bold;
         }
     }
 

@@ -9,7 +9,10 @@
 
 .item-list-button {
   align-self: center;
-  font-size: 48px; }
+  font-size: 48px;
+  color: #F4D03F;
+  background-color: transparent;
+  border: transparent; }
 
 .nav-div {
   width: 15%;
@@ -47,7 +50,7 @@ html {
 body {
   box-sizing: border-box;
   padding: 0rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-weight: 400;
   line-height: 1.7;
   color: #424949; }
@@ -83,23 +86,27 @@ svg {
     height: 10vh; }
   .home__search-span {
     margin: auto 0; }
-  .home__search-input {
-    align-self: center;
-    padding: 5px;
-    background-color: #ddd;
-    border: 1px solid #777;
-    font-size: 18px;
-    margin: 0 0 0 100px; }
-    .home__search-input__label {
+  .home__search {
+    margin-top: 7rem; }
+    .home__search__input {
+      padding: 1rem;
+      background-color: #fff;
+      color: #fff;
+      font-weight: bold; }
+      .home__search__input::placeholder {
+        color: #aaa;
+        font-style: italic;
+        font-weight: normal; }
+    .home__search__label {
       margin: 0 20px;
       font-size: 18px;
       padding: 5px; }
-      .home__search-input__label:hover {
+      .home__search__label:hover {
         cursor: pointer;
         color: orange; }
-    .home__search-input__checkbox {
+    .home__search__checkbox {
       display: none; }
-    .home__search-input__checkbox__tags:checked ~ .home__search-input__label__tags, .home__search-input__checkbox__name:checked ~ .home__search-input__label__name, .home__search-input__checkbox__company:checked ~ .home__search-input__label__company {
+    .home__search__checkbox__tags:checked ~ .home__search__label__tags, .home__search__checkbox__name:checked ~ .home__search__label__name, .home__search__checkbox__company:checked ~ .home__search__label__company {
       border: 5px solid orange;
       border-radius: 10px; }
   .home__search-tags-ul {
@@ -118,8 +125,10 @@ svg {
   .home__featured {
     height: 375px; }
     .home__featured__header {
+      color: #ED5C66;
       padding: 1rem 0;
-      border-bottom: 1px solid #aaa; }
+      border-bottom: 2px solid #DCE5F6;
+      font-weight: 1000; }
     .home__featured__ul {
       display: flex;
       justify-content: space-between;
@@ -131,12 +140,18 @@ svg {
       align-items: center; }
     .home__featured__image {
       width: 200px; }
+    .home__featured__name {
+      color: #4DAFE5;
+      text-align: center;
+      font-weight: bold; }
   .home__by-company {
     min-height: 425px;
     height: 375px; }
     .home__by-company__header {
       padding: 1rem 0;
-      border-bottom: 1px solid #aaa; }
+      color: #ED5C66;
+      border-bottom: 2px solid #DCE5F6;
+      font-weight: 1000; }
     .home__by-company__ul {
       display: flex;
       justify-content: space-between;
@@ -155,7 +170,7 @@ svg {
       justify-content: space-between;
       align-content: row; }
       .home__by-company__companys-list__item {
-        font-weight: bold;
+        font-weight: 1000;
         font-size: 18px; }
         .home__by-company__companys-list__item:hover {
           cursor: pointer; }
@@ -163,6 +178,10 @@ svg {
       display: flex;
       justify-content: space-between;
       align-content: row; }
+    .home__by-company__name {
+      color: #4DAFE5;
+      text-align: center;
+      font-weight: bold; }
   .home__search-results__header {
     padding: 1rem 0;
     border-bottom: 1px solid #aaa; }
@@ -348,21 +367,20 @@ svg {
 
 .nav {
   height: 100vh;
-  background-color: #ffa;
-  border-right: 3px solid #bb9; }
+  border-right: 4px dashed #DCE5F6; }
   .nav__logo {
     width: 100%; }
   .nav__ul {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    text-align: center;
-    height: 80vh;
-    padding-bottom: 200px; }
+    text-align: left;
+    height: 70vh;
+    padding: 40% 0 20% 20%; }
   .nav__li {
-    font-size: 24px;
-    font-weight: bold; }
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px; }
   .nav__a {
-    color: #333; }
+    color: #7591C7; }
     .nav__a:hover {
       text-decoration: none; }
