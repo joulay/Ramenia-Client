@@ -175,7 +175,7 @@ svg {
     max-height: 80vh; }
   .home__search-results__li {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-direction: column;
     align-items: center; }
   .home__search-results__image {
