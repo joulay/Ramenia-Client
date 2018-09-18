@@ -89,7 +89,7 @@
             color: $color-red-one;
             padding: 1rem 0;
             border-bottom: 2px solid $color-blue-light;
-            font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-weight: 1000;
         }
 
         &__ul {
@@ -112,6 +112,14 @@
         &__details {
 
         }
+
+        &__name {
+            color: $color-blue-bright;
+            text-align: center;
+            font-weight: bold;
+        }
+
+
     }
 
     &__by-company {
@@ -122,6 +130,7 @@
             padding: 1rem 0;
             color: $color-red-one;
             border-bottom: 2px solid $color-blue-light;
+            font-weight: 1000;
         }
 
         &__ul {
@@ -150,7 +159,7 @@
             align-content: row;
             
             &__item {
-                font-weight: bold;
+                font-weight: 1000;
                 font-size: 18px;
 
                 &:hover {
@@ -163,6 +172,12 @@
             display: flex;
             justify-content: space-between;
             align-content: row;
+        }
+
+        &__name {
+            color: $color-blue-bright;
+            text-align: center;
+            font-weight: bold;
         }
     }
 
