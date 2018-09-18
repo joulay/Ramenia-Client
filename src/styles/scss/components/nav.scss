@@ -1,7 +1,7 @@
 .nav {
     height: 100vh;
-    background-color: #ffa;
-    border-right: 3px solid #bb9;
+    background-color: #FBFCFC;
+    border-right: 6px solid $color-blue-light;
 
     &__logo {
         width: 100%;
@@ -11,19 +11,19 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        text-align: center;
+        text-align: left;
         height: 80vh;
-        padding-bottom: 200px;
+        padding: 95px 0 95px 25px;
     }
 
     &__li {
-        font-size: 24px;
-        font-weight: bold;
+        font-family: 'Nunito', sans-serif;
+        font-size: 18px;
     }
 
     &__a {
-        color: #333;
-
+        // color: #ED5C66;
+        color: $color-blue-dark;
         &:hover {
             text-decoration: none;
         }

@@ -352,21 +352,21 @@ svg {
 
 .nav {
   height: 100vh;
-  background-color: #ffa;
-  border-right: 3px solid #bb9; }
+  background-color: #FBFCFC;
+  border-right: 6px solid #DCE5F6; }
   .nav__logo {
     width: 100%; }
   .nav__ul {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    text-align: center;
+    text-align: left;
     height: 80vh;
-    padding-bottom: 200px; }
+    padding: 95px 0 95px 25px; }
   .nav__li {
-    font-size: 24px;
-    font-weight: bold; }
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px; }
   .nav__a {
-    color: #333; }
+    color: #7591C7; }
     .nav__a:hover {
       text-decoration: none; }
