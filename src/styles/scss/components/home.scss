@@ -86,8 +86,10 @@
         height: 375px;
 
         &__header {
+            color: $color-red-one;
             padding: 1rem 0;
-            border-bottom: 1px solid #aaa;
+            border-bottom: 1px solid $color-blue-light;
+            font-family: "Lato";
         }
 
         &__ul {

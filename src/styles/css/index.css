@@ -122,8 +122,10 @@ svg {
   .home__featured {
     height: 375px; }
     .home__featured__header {
+      color: #ED5C66;
       padding: 1rem 0;
-      border-bottom: 1px solid #aaa; }
+      border-bottom: 1px solid #DCE5F6;
+      font-family: "Lato"; }
     .home__featured__ul {
       display: flex;
       justify-content: space-between;
@@ -361,8 +363,8 @@ svg {
     flex-direction: column;
     justify-content: space-around;
     text-align: left;
-    height: 80vh;
-    padding: 95px 0 95px 25px; }
+    height: 70vh;
+    padding: 95px 0 95px 35px; }
   .nav__li {
     font-family: 'Nunito', sans-serif;
     font-size: 18px; }
