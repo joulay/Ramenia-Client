@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, withRouter } from 'react-router-dom';
+import { Redirect, Link, Route, withRouter } from 'react-router-dom';
 import moment from 'moment';
 import queryString from 'query-string';
 import {selectRamen} from '../actions/selections';
@@ -22,19 +22,18 @@ class ProductPage extends React.Component {
         }
     }
 
-
-
     render() {
+
 
         return (
             <nav className="nav">
                 <img className="nav__logo" src={ramenCollective}/>
                 <ul className="nav__ul">
-                    <li className="nav__li"> <a className="nav__a" href="/">HOME</a> </li>
-                    <li className="nav__li"> <a className="nav__a" href="/liked">LIKED</a> </li>
-                    <li className="nav__li"> <a className="nav__a" href="/forum">FORUM</a> </li>
-                    <li className="nav__li"> <a className="nav__a" href="/login">LOG IN</a> </li>
-                    <li className="nav__li"> <a className="nav__a" href="/signup">SIGN UP</a> </li>
+                    <li className="nav__li"> <Link className="nav__a" to="/">HOME</Link> </li>
+                    <li className="nav__li"> <Link className="nav__a" to="/liked">LIKED</Link> </li>
+                    <li className="nav__li"> <Link className="nav__a" to="/forum">FORUM</Link> </li>
+                    <li className="nav__li"> <Link className="nav__a" to="/login">LOG IN</Link> </li>
+                    <li className="nav__li"> <Link className="nav__a" to="/signup">SIGN UP</Link> </li>
                 </ul>
             </nav>
         )

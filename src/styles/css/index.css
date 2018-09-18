@@ -205,13 +205,20 @@ svg {
     width: 47.5%; }
   .product-page__main__right {
     width: 47.5%;
-    padding: 10px;
     display: flex;
-    justify-content: space-around;
-    flex-direction: row;
+    justify-content: center;
+    flex-direction: column;
     align-items: center;
     background-color: #bbb;
     margin: 0; }
+    .product-page__main__right__top {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      padding: 10px; }
+  .product-page__main__wrap {
+    padding: 20px; }
   .product-page__main__favorite {
     width: 50px;
     margin-left: 100px; }
@@ -220,6 +227,8 @@ svg {
     width: 300px; }
   .product-page__main__number-rating {
     font-size: 96px; }
+  .product-page__main__total-rating {
+    padding: 20px; }
   .product-page__main__review-button {
     padding: 5px; }
 
