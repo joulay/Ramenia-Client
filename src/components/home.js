@@ -183,7 +183,7 @@ class Home extends React.Component {
         if (this.state.search.length > 0) {
             const results = this.props.ramen
             .filter((item) => {
-                if (!this.state.tags) {
+                if (this.state.tags.length < 1) {
                     return item;
                 }
                 if (item.tags.length > 0) {
