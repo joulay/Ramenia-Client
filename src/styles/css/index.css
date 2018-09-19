@@ -247,7 +247,24 @@ svg {
   .product-page__main__total-rating {
     padding: 20px; }
   .product-page__main__review-button {
-    padding: 5px; }
+    outline: none;
+    height: 50px;
+    text-align: center;
+    width: 150px;
+    border-radius: 40px;
+    background: #fff;
+    border: 2px solid #7591C7;
+    color: #7591C7;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-weight: bold; }
+    .product-page__main__review-button:hover {
+      color: white;
+      background: #7591C7; }
+  .product-page__main__reviews {
+    color: #4DAFE5; }
 
 .product-page__review {
   width: 47.5%;

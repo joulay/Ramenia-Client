@@ -153,7 +153,7 @@ class ProductPage extends React.Component {
                         <span className="product-page__main__total-rating">
                             {stars}
                         </span>
-                        <p>{this.state.ramen.ratings.length} Reviews</p>
+                        <p className="product-page__main__reviews">{this.state.ramen.ratings.length} Reviews</p>
                         <button onClick={() => this.setState({writeReview: true})} className="product-page__main__review-button" >Write a review!</button>
                     </span>
                 </span>
