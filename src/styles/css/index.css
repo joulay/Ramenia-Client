@@ -278,6 +278,8 @@ svg {
   .product-page__review__form {
     float: right;
     margin: 0 auto; }
+  .product-page__review__rating {
+    color: #4DAFE5; }
   .product-page__review__text {
     font-size: 16px;
     display: block;
@@ -309,6 +311,8 @@ svg {
 
 .product-page__reviews {
   margin-top: 50px; }
+  .product-page__reviews__ul {
+    color: #717D7E; }
 
 .admin__nav {
   border-bottom: 3px solid black; }

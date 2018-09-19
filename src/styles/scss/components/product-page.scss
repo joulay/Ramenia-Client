@@ -111,7 +111,7 @@
         }
 
         &__rating {
-            
+            color: $color-blue-bright;
         }
 
         &__text {
@@ -154,5 +154,10 @@
 
     &__reviews {
         margin-top: 50px;
+
+        &__ul {
+            color: $color-review;
+        }
     }
+
 }
