@@ -225,7 +225,7 @@ svg {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: #bbb;
+    background-color: #EBF5FB;
     margin: 0; }
     .product-page__main__right__top {
       display: flex;
@@ -242,7 +242,8 @@ svg {
     align-self: center;
     width: 300px; }
   .product-page__main__number-rating {
-    font-size: 96px; }
+    font-size: 96px;
+    color: #1ec0ff; }
   .product-page__main__total-rating {
     padding: 20px; }
   .product-page__main__review-button {

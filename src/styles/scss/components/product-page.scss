@@ -26,7 +26,7 @@
             justify-content: center;
             flex-direction: column;
             align-items: center;
-            background-color: #bbb;
+            background-color: $color-nav;
             margin: 0;
             
             &__top {
@@ -58,6 +58,7 @@
 
         &__number-rating {
             font-size: 96px;
+            color: $color-blue-really-bright;
         }
 
         &__total-rating {
