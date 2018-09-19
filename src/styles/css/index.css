@@ -313,6 +313,8 @@ svg {
   margin-top: 50px; }
   .product-page__reviews__ul {
     color: #717D7E; }
+  .product-page__reviews__user {
+    color: #4DAFE5; }
 
 .admin__nav {
   border-bottom: 3px solid black; }
