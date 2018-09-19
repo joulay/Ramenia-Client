@@ -206,7 +206,8 @@ svg {
 .product-page__ramen-name {
   margin: 50px 0 0 50px;
   font-size: 48px;
-  font-weight: bold; }
+  font-weight: bold;
+  color: #1ec0ff; }
 
 .product-page__main {
   margin-top: 10rem;
