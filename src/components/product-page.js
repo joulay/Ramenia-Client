@@ -103,7 +103,7 @@ class ProductPage extends React.Component {
                 return (
                     <li key={review.id} className="product-page__reviews__li">
                         <span className="product-page__reviews__rating">{reviewStars}</span>
-                        <p>Anonymous on {moment(review.created).format('MM/DD/YYYY')}</p>
+                        <p className="product-page__reviews__user">Anonymous on {moment(review.created).format('MM/DD/YYYY')}</p>
                         <p>
                             {reviewText}
                         </p>
