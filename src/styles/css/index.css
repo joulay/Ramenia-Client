@@ -206,7 +206,8 @@ svg {
 .product-page__ramen-name {
   margin: 50px 0 0 50px;
   font-size: 48px;
-  font-weight: bold; }
+  font-weight: bold;
+  color: #1ec0ff; }
 
 .product-page__main {
   margin-top: 10rem;
@@ -224,7 +225,7 @@ svg {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: #bbb;
+    background-color: #EBF5FB;
     margin: 0; }
     .product-page__main__right__top {
       display: flex;
@@ -241,11 +242,29 @@ svg {
     align-self: center;
     width: 300px; }
   .product-page__main__number-rating {
-    font-size: 96px; }
+    font-size: 96px;
+    color: #ED5C66; }
   .product-page__main__total-rating {
     padding: 20px; }
   .product-page__main__review-button {
-    padding: 5px; }
+    outline: none;
+    height: 50px;
+    text-align: center;
+    width: 150px;
+    border-radius: 40px;
+    background: #fff;
+    border: 2px solid #7591C7;
+    color: #7591C7;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-weight: bold; }
+    .product-page__main__review-button:hover {
+      color: white;
+      background: #7591C7; }
+  .product-page__main__reviews {
+    color: #4DAFE5; }
 
 .product-page__review {
   width: 47.5%;
@@ -254,22 +273,46 @@ svg {
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
-  background-color: #bbb;
+  background-color: #EBF5FB;
   margin: 0; }
   .product-page__review__form {
     float: right;
     margin: 0 auto; }
+  .product-page__review__rating {
+    color: #4DAFE5; }
   .product-page__review__text {
     font-size: 16px;
-    display: block; }
+    display: block;
+    border: 1px solid white;
+    border-radius: 6px; }
   .product-page__review__go-back {
     cursor: pointer;
-    margin-right: 200px; }
+    float: left; }
+    .product-page__review__go-back:hover {
+      text-decoration: none; }
   .product-page__review__button {
-    padding: 5px; }
+    outline: none;
+    height: 50px;
+    text-align: center;
+    width: 150px;
+    border-radius: 40px;
+    background: #fff;
+    border: 2px solid #7591C7;
+    color: #7591C7;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-weight: bold;
+    float: right;
+    margin-top: 14px; }
+    .product-page__review__button:hover {
+      color: white;
+      background: #7591C7; }
 
 .product-page__reviews {
   margin-top: 50px; }
+  .product-page__reviews__ul {
+    color: #717D7E; }
 
 .admin__nav {
   border-bottom: 3px solid black; }
