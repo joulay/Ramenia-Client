@@ -157,6 +157,7 @@ class ProductPage extends React.Component {
                         <button onClick={() => this.setState({writeReview: true})} className="product-page__main__review-button" >Write a review!</button>
                     </span>
                 </span>
+                
                 <span className="product-page__main__right__bottom">{tags}</span>
             </div>
             );
