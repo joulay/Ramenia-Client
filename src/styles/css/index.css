@@ -85,30 +85,23 @@ svg {
     justify-content: space-between;
     height: 10vh; }
   .home__search-span {
-    margin: auto 0; }
-  .home__search {
-    margin-top: 7rem; }
-    .home__search__input {
-      padding: 1rem;
-      background-color: #fff;
-      color: #fff;
-      font-weight: bold; }
-      .home__search__input::placeholder {
-        color: #aaa;
-        font-style: italic;
-        font-weight: normal; }
-    .home__search__label {
-      margin: 0 20px;
-      font-size: 18px;
-      padding: 5px; }
-      .home__search__label:hover {
-        cursor: pointer;
-        color: orange; }
-    .home__search__checkbox {
-      display: none; }
-    .home__search__checkbox__tags:checked ~ .home__search__label__tags, .home__search__checkbox__name:checked ~ .home__search__label__name, .home__search__checkbox__company:checked ~ .home__search__label__company {
-      border: 5px solid orange;
-      border-radius: 10px; }
+    margin: 5rem 0 2rem 3rem; }
+  .home__search__input::placeholder {
+    color: #aaa;
+    font-style: italic;
+    font-weight: normal; }
+  .home__search__label {
+    margin: 0 20px;
+    font-size: 18px;
+    padding: 5px; }
+    .home__search__label:hover {
+      cursor: pointer;
+      color: orange; }
+  .home__search__checkbox {
+    display: none; }
+  .home__search__checkbox__tags:checked ~ .home__search__label__tags, .home__search__checkbox__name:checked ~ .home__search__label__name, .home__search__checkbox__company:checked ~ .home__search__label__company {
+    border: 5px solid orange;
+    border-radius: 10px; }
   .home__search-tags-ul {
     border: 1px solid #777;
     font-size: 18px;
