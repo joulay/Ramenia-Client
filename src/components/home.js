@@ -251,17 +251,21 @@ class Home extends React.Component {
                             let tags = this.state.tags;
                             tags.push(tag);
                             this.setState({searchTags: '', tags})
-                        }} className="home__search-tags-li" key={tag.id}>{tag.name}</li>
+                        }} className="home__search-tags-li" key={tag.id}>{tag.name}
+                        
+                        </li>
                     )
                 }
             });
             showTags = this.state.tags.map((tag) => {
                 return (
+                    
                     <li key={tag.id} value={tag.id} className="home__search_tags-li">
                         #{tag.name} <a className="home__search_tags-li__remove" onClick={() => {
                             const tagRemoval = this.state.tags.filter((item) => item.name !== tag.name);
                             this.setState({tags: tagRemoval})
                         }}>X</a>
+                    
                     </li>
                 )
             })

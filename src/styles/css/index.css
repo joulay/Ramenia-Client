@@ -155,7 +155,10 @@ svg {
     padding: .5rem;
     margin-left: 300px; }
     .home__search_tags-li:hover {
-      background-color: #aaa; }
+      background-color: #EBF5FB; }
+    .home__search_tags-li__remove {
+      padding-left: 1rem;
+      text-decoration: none; }
   .home__advertisement {
     align-self: center;
     margin: 20px 20px -20px 0; }
