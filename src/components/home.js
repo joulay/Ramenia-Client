@@ -257,8 +257,8 @@ class Home extends React.Component {
             });
             showTags = this.state.tags.map((tag) => {
                 return (
-                    <li key={tag.id} value={tag.id} className="head__tags__li">
-                        #{tag.name} <a className="head__tags__li__remove" onClick={() => {
+                    <li key={tag.id} value={tag.id} className="home__search_tags-li">
+                        #{tag.name} <a className="home__search_tags-li__remove" onClick={() => {
                             const tagRemoval = this.state.tags.filter((item) => item.name !== tag.name);
                             this.setState({tags: tagRemoval})
                         }}>X</a>
