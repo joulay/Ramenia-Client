@@ -226,7 +226,7 @@ class ProductPage extends React.Component {
                     }}
                     className="product-page__review__form">
                         <p className="product-page__review__rating">Rating: {reviewStars}</p>
-                        <p className="product-page__review__rating">Spiciness: {reviewSpicy}</p>
+                        {/* <p className="product-page__review__rating">Spiciness: {reviewSpicy}</p> */}
                         <textarea onChange={(event) => this.setState({reviewText: event.target.value})} rows="4" cols="50" className="product-page__review__text"></textarea>
                         <a onClick={()=>this.setState({writeReview: false})} className="product-page__review__go-back">Go back to summary</a>
                         <button className="product-page__review__button">Submit</button>

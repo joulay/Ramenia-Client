@@ -9,10 +9,12 @@
 
 .item-list-button {
   align-self: center;
-  font-size: 48px;
-  color: #F4D03F;
+  font-size: 80px;
+  color: #F7DC6F;
   background-color: transparent;
-  border: transparent; }
+  border: transparent;
+  border-radius: 50%;
+  outline: none !important; }
 
 .nav-div {
   width: 15%;
@@ -101,7 +103,7 @@ svg {
     .home__search-input:focus {
       z-index: 3;
       width: 270px;
-      border: 1px solid #7591C7;
+      border: 1px solid #DCE5F6;
       outline: none;
       cursor: auto;
       padding-right: 10px; }
@@ -326,7 +328,8 @@ svg {
     font-size: 16px;
     display: block;
     border: 1px solid white;
-    border-radius: 6px; }
+    border-radius: 6px;
+    outline: none !important; }
   .product-page__review__go-back {
     cursor: pointer;
     float: left; }
