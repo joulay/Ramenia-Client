@@ -10,7 +10,7 @@
 .item-list-button {
   align-self: center;
   font-size: 80px;
-  color: #F4D03F;
+  color: #F7DC6F;
   background-color: transparent;
   border: transparent;
   border-radius: 50%;
@@ -103,7 +103,7 @@ svg {
     .home__search-input:focus {
       z-index: 3;
       width: 270px;
-      border: 1px solid #7591C7;
+      border: 1px solid #DCE5F6;
       outline: none;
       cursor: auto;
       padding-right: 10px; }
