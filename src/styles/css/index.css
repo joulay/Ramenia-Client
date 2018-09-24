@@ -13,7 +13,8 @@
   color: #F4D03F;
   background-color: transparent;
   border: transparent;
-  border-radius: 50%; }
+  border-radius: 50%;
+  outline: none !important; }
 
 .nav-div {
   width: 15%;
@@ -328,7 +329,7 @@ svg {
     display: block;
     border: 1px solid white;
     border-radius: 6px;
-    text-decoration: none; }
+    outline: none !important; }
   .product-page__review__go-back {
     cursor: pointer;
     float: left; }

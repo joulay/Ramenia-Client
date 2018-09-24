@@ -122,7 +122,7 @@
             display: block;
             border: 1px solid white;
             border-radius: 6px;
-            text-decoration: none;
+            outline: none !important;
         }
 
         &__go-back {
