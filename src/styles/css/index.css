@@ -9,10 +9,11 @@
 
 .item-list-button {
   align-self: center;
-  font-size: 48px;
+  font-size: 80px;
   color: #F4D03F;
   background-color: transparent;
-  border: transparent; }
+  border: transparent;
+  border-radius: 50%; }
 
 .nav-div {
   width: 15%;
@@ -326,7 +327,8 @@ svg {
     font-size: 16px;
     display: block;
     border: 1px solid white;
-    border-radius: 6px; }
+    border-radius: 6px;
+    text-decoration: none; }
   .product-page__review__go-back {
     cursor: pointer;
     float: left; }
