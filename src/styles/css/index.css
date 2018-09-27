@@ -94,7 +94,7 @@ svg {
     transition: z-index 0.8s, width 0.5s, background 0.3s ease, border 0.3s;
     height: 45px;
     width: 0;
-    margin: 0;
+    margin: -15px 10px;
     padding: 5px 0 5px 40px;
     border-radius: 30px;
     border: 1px solid transparent;
