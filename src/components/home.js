@@ -276,11 +276,11 @@ class Home extends React.Component {
                 <div className="home__head">
                     <span className="home__search-span">
                         <input value={this.state.search} onChange={(event) => this.setState({search: event.target.value})} placeholder="search" className="home__search-input"></input>
-                        <ul className="home__search-tags-ul">
+                        {/* <ul className="home__search-tags-ul">
                             <input onChange={(event) => this.setState({searchTags: event.target.value})} placeholder="tags" className="home__search-tags-input"/>
                             {tagsSearchResults}
                         </ul>
-                        {showTags}
+                        {showTags} */}
                         {/* <input className="home__search-input__checkbox home__search-input__checkbox__tags" id="tags" type="checkbox" />
                         <label className="home__search-input__label home__search-input__label__tags" for="tags">Tags</label>
                         <input className="home__search-input__checkbox home__search-input__checkbox__name" id="name" type="checkbox" />

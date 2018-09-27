@@ -94,7 +94,7 @@ svg {
     transition: z-index 0.8s, width 0.5s, background 0.3s ease, border 0.3s;
     height: 45px;
     width: 0;
-    margin: 0;
+    margin: -15px 10px;
     padding: 5px 0 5px 40px;
     border-radius: 30px;
     border: 1px solid transparent;
@@ -190,7 +190,7 @@ svg {
     min-height: 425px;
     height: 375px; }
     .home__by-company__header {
-      padding: 1rem 0;
+      padding: 5rem 0 1rem;
       color: #ED5C66;
       border-bottom: 2px solid #DCE5F6;
       font-weight: 1000; }
